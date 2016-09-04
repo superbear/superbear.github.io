@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- 2016-09-04 日 20:35 -->
+<meta  charset="utf-8">
+<meta  name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么用 Org-mode 写博客?</title>
+<meta  name="generator" content="Org-mode">
+<meta  name="author" content="superbear">
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  pre.src-sh:before    { content: 'sh'; }
+  pre.src-bash:before  { content: 'sh'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-R:before     { content: 'R'; }
+  pre.src-perl:before  { content: 'Perl'; }
+  pre.src-java:before  { content: 'Java'; }
+  pre.src-sql:before   { content: 'SQL'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="../../css/worg.css" />
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2013 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">为什么用 Org-mode 写博客?</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgheadline2">Why</a>
+<ul>
+<li><a href="#orgheadline1">Because Emacs Love You! :-)</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline3">How</a></li>
+<li><a href="#orgheadline4">Reference</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgheadline2" class="outline-2">
+<h2 id="orgheadline2">Why</h2>
+<div class="outline-text-2" id="text-orgheadline2">
+</div><div id="outline-container-orgheadline1" class="outline-3">
+<h3 id="orgheadline1">Because Emacs Love You! :-)</h3>
+</div>
+</div>
+
+<div id="outline-container-orgheadline3" class="outline-2">
+<h2 id="orgheadline3">How</h2>
+<div class="outline-text-2" id="text-orgheadline3">
+<p>
+下面贴一下我的配置
+</p>
+<div class="org-src-container">
+
+<pre class="src src-emacs-lisp"><span style="color: #657b83;">(</span><span style="color: #859900;">require</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">ox-publish</span><span style="color: #657b83;">)</span><span style="color: #93a1a1; font-style: italic;">;;;</span><span style="color: #93a1a1; font-style: italic;">&#27880;&#24847;&#25105;&#36825;&#37324;&#29992;&#26159;ox-publish&#32780;&#19981;&#26159;org-publish&#65292;&#21644;Emacs&#20197;&#21450;Org&#29256;&#26412;&#26377;&#20851;</span>
+<span style="color: #657b83;">(</span>setq org-publish-project-alist
+      <span style="color: #859900;">'</span><span style="color: #2aa198;">(</span>
+        <span style="color: #b58900;">(</span><span style="color: #2aa198;">"blog-notes"</span>
+         <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/.org/blog/"</span>
+         <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"org"</span>
+         <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/.org/superbear.github.io/"</span>
+         <span style="color: #6c71c4;">:recursive</span> t
+         <span style="color: #6c71c4;">:publishing-function</span> org-html-publish-to-html
+         <span style="color: #6c71c4;">:headline-levels</span> 4
+         <span style="color: #6c71c4;">:section-numbers</span> nil
+         <span style="color: #6c71c4;">:auto-preamble</span> t
+         <span style="color: #6c71c4;">:auto-sitemap</span> t                <span style="color: #93a1a1; font-style: italic;">; </span><span style="color: #93a1a1; font-style: italic;">Generate sitemap.org automagically...</span>
+         <span style="color: #6c71c4;">:sitemap-filename</span> <span style="color: #2aa198;">"sitemap.org"</span>  <span style="color: #93a1a1; font-style: italic;">; </span><span style="color: #93a1a1; font-style: italic;">... call it sitemap.org (it's the default)...</span>
+         <span style="color: #6c71c4;">:sitemap-title</span> <span style="color: #2aa198;">"Sitemap"</span>         <span style="color: #93a1a1; font-style: italic;">; </span><span style="color: #93a1a1; font-style: italic;">... with title 'Sitemap'.</span>
+         <span style="color: #6c71c4;">:sitemap-file-entry-format</span> <span style="color: #2aa198;">"[%t] %d"</span>
+         <span style="color: #6c71c4;">:author</span> <span style="color: #2aa198;">"superbear"</span>
+         <span style="color: #6c71c4;">:html-doctype</span> <span style="color: #2aa198;">"html5"</span>
+         <span style="color: #6c71c4;">:html-head</span> <span style="color: #2aa198;">"&lt;link rel=</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">"</span><span style="color: #2aa198;">stylesheet</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">"</span><span style="color: #2aa198;"> href=</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">"</span><span style="color: #2aa198;">css/worg.css</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">"</span><span style="color: #2aa198;"> type=</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">"</span><span style="color: #2aa198;">text/css</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">"</span><span style="color: #2aa198;">/&gt;"</span><span style="color: #93a1a1; font-style: italic;">;;;</span><span style="color: #93a1a1; font-style: italic;">&#23448;&#32593;css</span>
+         <span style="color: #6c71c4;">:html-preamble</span> nil
+         <span style="color: #b58900;">)</span>
+        <span style="color: #b58900;">(</span><span style="color: #2aa198;">"blog-static"</span>
+         <span style="color: #6c71c4;">:base-directory</span> <span style="color: #2aa198;">"~/.org/blog/"</span>
+         <span style="color: #6c71c4;">:base-extension</span> <span style="color: #2aa198;">"css</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">js</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">png</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">jpg</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">gif</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">pdf</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">mp3</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">ogg</span><span style="color: #6c71c4;">\</span><span style="color: #d33682;">\</span><span style="color: #d33682;">|</span><span style="color: #2aa198;">swf"</span>
+         <span style="color: #6c71c4;">:publishing-directory</span> <span style="color: #2aa198;">"~/.org/superbear.github.io/"</span>
+         <span style="color: #6c71c4;">:recursive</span> t
+         <span style="color: #6c71c4;">:publishing-function</span> org-publish-attachment<span style="color: #b58900;">)</span>
+         <span style="color: #b58900;">(</span><span style="color: #2aa198;">"blog"</span> <span style="color: #6c71c4;">:components</span> <span style="color: #859900;">(</span><span style="color: #2aa198;">"blog-notes"</span> <span style="color: #2aa198;">"blog-static"</span><span style="color: #859900;">)</span><span style="color: #b58900;">)</span>
+        <span style="color: #93a1a1; font-style: italic;">;;</span>
+        <span style="color: #2aa198;">)</span><span style="color: #657b83;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">Reference</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+<ul class="org-ul">
+<li><a href="http://orgmode.org/manual/Publishing.html#Publishing">Org-mode</a></li>
+
+<li><a href="http://dayigu.github.io/WhyUseOrgModeToWriteBlog.html">为什么用Org-mode写博客</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2016-09-03 六&gt;</span></span></p>
+<p class="author">Author: superbear</p>
+<p class="date">Created: 2016-09-04 日 20:35</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>
