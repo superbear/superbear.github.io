@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- 2016-09-07 三 20:45 -->
+<!-- 2016-09-24 六 00:25 -->
 <meta  charset="utf-8">
 <meta  name="viewport" content="width=device-width, initial-scale=1">
 <title>为什么用 Org-mode 写博客?</title>
@@ -148,8 +148,13 @@ for the JavaScript code in this tag.
 <div id="text-table-of-contents">
 <ul>
 <li><a href="#orgheadline1">Why</a></li>
-<li><a href="#orgheadline2">How</a></li>
-<li><a href="#orgheadline3">Reference</a></li>
+<li><a href="#orgheadline4">How</a>
+<ul>
+<li><a href="#orgheadline2">我的配置</a></li>
+<li><a href="#orgheadline3">遇到的问题：</a></li>
+</ul>
+</li>
+<li><a href="#orgheadline5">Reference</a></li>
 </ul>
 </div>
 </div>
@@ -163,12 +168,12 @@ Do Everything With <b>Emacs</b>
 </div>
 </div>
 
-<div id="outline-container-orgheadline2" class="outline-2">
-<h2 id="orgheadline2">How</h2>
-<div class="outline-text-2" id="text-orgheadline2">
-<p>
-下面贴一下我的配置
-</p>
+<div id="outline-container-orgheadline4" class="outline-2">
+<h2 id="orgheadline4">How</h2>
+<div class="outline-text-2" id="text-orgheadline4">
+</div><div id="outline-container-orgheadline2" class="outline-3">
+<h3 id="orgheadline2">我的配置</h3>
+<div class="outline-text-3" id="text-orgheadline2">
 <div class="org-src-container">
 
 <pre class="src src-emacs-lisp"><span style="color: #657b83;">(</span><span style="color: #859900;">require</span> <span style="color: #859900;">'</span><span style="color: #268bd2;">ox-publish</span><span style="color: #657b83;">)</span><span style="color: #93a1a1; font-style: italic;">;;;</span><span style="color: #93a1a1; font-style: italic;">&#27880;&#24847;&#25105;&#36825;&#37324;&#29992;&#26159;ox-publish&#32780;&#19981;&#26159;org-publish&#65292;&#21644;Emacs&#20197;&#21450;Org&#29256;&#26412;&#26377;&#20851;</span>
@@ -206,9 +211,39 @@ Do Everything With <b>Emacs</b>
 </div>
 </div>
 
-<div id="outline-container-orgheadline3" class="outline-2">
-<h2 id="orgheadline3">Reference</h2>
-<div class="outline-text-2" id="text-orgheadline3">
+<div id="outline-container-orgheadline3" class="outline-3">
+<h3 id="orgheadline3">遇到的问题：</h3>
+<div class="outline-text-3" id="text-orgheadline3">
+<ol class="org-ol">
+<li><p>
+上述导出设置中，引入的css文件路径是相对路径（相对于当前导出文件），根目录下新建文件夹，导出后发现css路径不对，怎么办？
+</p>
+
+<p>
+1). 法一：可以在当前导出文件中配置HTML_HEAD选项（优先级较全局配置高）
+</p>
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+HTML_HEAD: &lt;link rel="stylesheet" type="text/css" href="<a href="http://orgmode.org/worg/style/worg.css&quot;/">http://orgmode.org/worg/style/worg.css"/</a>&gt;</span>
+</pre>
+</div>
+
+<p>
+2). 法二：通过选项INCLUDE引入公用头部，里面可以加配置项，如 HTML_HEAD
+</p>
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #93a1a1; font-style: italic;">#+INCLUDE: "/path/to/common_header.org"</span>
+</pre>
+</div></li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgheadline5" class="outline-2">
+<h2 id="orgheadline5">Reference</h2>
+<div class="outline-text-2" id="text-orgheadline5">
 <ul class="org-ul">
 <li><a href="http://orgmode.org/manual/Publishing.html#Publishing">Org-mode</a></li>
 
@@ -220,7 +255,7 @@ Do Everything With <b>Emacs</b>
 <div id="postamble" class="status">
 <p class="date">Date: <span class="timestamp-wrapper"><span class="timestamp">&lt;2016-09-03 六&gt;</span></span></p>
 <p class="author">Author: superbear</p>
-<p class="date">Created: 2016-09-07 三 20:45</p>
+<p class="date">Created: 2016-09-24 六 00:25</p>
 <p class="validation"></p>
 </div>
 </body>
