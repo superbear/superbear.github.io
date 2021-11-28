@@ -11,9 +11,9 @@
 <meta name=msapplication-navbutton-color content="#f8f5ec">
 <meta name=apple-mobile-web-app-capable content="yes">
 <meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
-<meta name=author content="superbear"><meta name=description content="使用Emacs Script自动执行ox-hugo编译org文件 参考文档 https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ https://github.com/purcell/setup-emacs http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html"><meta name=keywords content="superbear,learn,work,share">
+<meta name=author content="superbear"><meta name=description content="使用Emacs Script自动执行ox-hugo编译org文件 参考文档 https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ https://github.com/purcell/setup-emacs http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html Hugo 文章日期设定上的小问题"><meta name=keywords content="superbear,learn,work,share">
 <meta name=generator content="Hugo 0.89.4 with theme even">
-<link rel=canonical href=https://superbear.github.io/post/2021/11/emacs-scripts/>
+<link rel=canonical href=https://superbear.github.io/post/2021/11/emacs-script/>
 <link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
 <link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
 <link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
@@ -22,18 +22,18 @@
 <link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
 <meta property="og:title" content="Emacs Script">
-<meta property="og:description" content="使用Emacs Script自动执行ox-hugo编译org文件 参考文档 https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ https://github.com/purcell/setup-emacs http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html">
+<meta property="og:description" content="使用Emacs Script自动执行ox-hugo编译org文件 参考文档 https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ https://github.com/purcell/setup-emacs http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html Hugo 文章日期设定上的小问题">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://superbear.github.io/post/2021/11/emacs-scripts/"><meta property="article:section" content="post">
+<meta property="og:url" content="https://superbear.github.io/post/2021/11/emacs-script/"><meta property="article:section" content="post">
 <meta property="article:published_time" content="2021-11-28T23:59:00+00:00">
-<meta property="article:modified_time" content="2021-11-28T20:27:33+00:00">
+<meta property="article:modified_time" content="2021-11-28T20:36:05+00:00">
 <meta itemprop=name content="Emacs Script">
-<meta itemprop=description content="使用Emacs Script自动执行ox-hugo编译org文件 参考文档 https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ https://github.com/purcell/setup-emacs http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html"><meta itemprop=datePublished content="2021-11-28T23:59:00+00:00">
-<meta itemprop=dateModified content="2021-11-28T20:27:33+00:00">
-<meta itemprop=wordCount content="38">
+<meta itemprop=description content="使用Emacs Script自动执行ox-hugo编译org文件 参考文档 https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ https://github.com/purcell/setup-emacs http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html Hugo 文章日期设定上的小问题"><meta itemprop=datePublished content="2021-11-28T23:59:00+00:00">
+<meta itemprop=dateModified content="2021-11-28T20:36:05+00:00">
+<meta itemprop=wordCount content="50">
 <meta itemprop=keywords content="emacs,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Emacs Script">
-<meta name=twitter:description content="使用Emacs Script自动执行ox-hugo编译org文件 参考文档 https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ https://github.com/purcell/setup-emacs http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<meta name=twitter:description content="使用Emacs Script自动执行ox-hugo编译org文件 参考文档 https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ https://github.com/purcell/setup-emacs http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html Hugo 文章日期设定上的小问题"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
 <script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
 </head>
 <body>
@@ -90,7 +90,7 @@
 <div class=post-category>
 <a href=/categories/tools/> tools </a>
 </div>
-<span class=more-meta> 约 38 字 </span>
+<span class=more-meta> 约 50 字 </span>
 <span class=more-meta> 预计阅读 1 分钟 </span>
 </div>
 </header>
@@ -114,6 +114,7 @@
 <p><a href=https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ target=_blank><a href=https://michaeljherold.com/articles/using-ox-hugo-without-duplication/>https://michaeljherold.com/articles/using-ox-hugo-without-duplication/</a></a></p>
 <p><a href=https://github.com/purcell/setup-emacs target=_blank><a href=https://github.com/purcell/setup-emacs>https://github.com/purcell/setup-emacs</a></a></p>
 <p><a href=http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html target=_blank><a href=http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html>http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html</a></a></p>
+<p><a href=https://blog.hly0928.com/post/hugo-post-date-issue/ target=_blank>Hugo 文章日期设定上的小问题</a></p>
 </div>
 <div class=post-copyright>
 <p class=copyright-item>
