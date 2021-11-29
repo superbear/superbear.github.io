@@ -26,11 +26,11 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://superbear.github.io/post/2021/11/use-org-mode-and-hugo-to-write-blog/"><meta property="article:section" content="post">
 <meta property="article:published_time" content="2021-11-28T14:55:00+08:00">
-<meta property="article:modified_time" content="2021-11-28T22:17:23+08:00">
+<meta property="article:modified_time" content="2021-11-29T13:21:35+08:00">
 <meta itemprop=name content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages">
 <meta itemprop=description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有。如blog。 Github Pages仓库，用来"><meta itemprop=datePublished content="2021-11-28T14:55:00+08:00">
-<meta itemprop=dateModified content="2021-11-28T22:17:23+08:00">
-<meta itemprop=wordCount content="1581">
+<meta itemprop=dateModified content="2021-11-29T13:21:35+08:00">
+<meta itemprop=wordCount content="1659">
 <meta itemprop=keywords content="emacs,orgmode,hugo,github-actions,2021,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages">
 <meta name=twitter:description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有。如blog。 Github Pages仓库，用来"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -90,7 +90,7 @@
 <div class=post-category>
 <a href=/categories/tools/> tools </a>
 </div>
-<span class=more-meta> 约 1581 字 </span>
+<span class=more-meta> 约 1659 字 </span>
 <span class=more-meta> 预计阅读 4 分钟 </span>
 </div>
 </header>
@@ -145,6 +145,13 @@
 <li>可跳过Org Mode相关内容</li>
 </ul>
 <h3 id=配置环境>配置环境</h3>
+<p>各软件版本</p>
+<ul>
+<li>Emacs 27.1</li>
+<li>Org Mode 9.3</li>
+<li>ox-hugo 20210916.1332</li>
+<li>hugo v0.89.4</li>
+</ul>
 <p>1、配置hugo</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
@@ -189,7 +196,7 @@ git submodule add https://github.com/olOwOlo/hugo-theme-even.git hugo/themes/eve
   <span class=p>(</span><span class=nb>require</span> <span class=ss>&#39;ox-hugo</span><span class=p>))</span>
 
 <span class=c1>;;; 可选。全局配置，如导出目录等字段，也可以在org文件里进行配置</span>
-<span class=nv>M-x</span> <span class=nv>customize-variable</span> <span class=nv>org-hugo</span>
+<span class=c1>;;; M-x customize-variable org-hugo</span>
 </code></pre></td></tr></table>
 </div>
 </div><h2 id=写博客>写博客</h2>
@@ -219,10 +226,14 @@ git submodule add https://github.com/olOwOlo/hugo-theme-even.git hugo/themes/eve
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-org data-lang=org><span class=cs>#+OPTIONS</span><span class=c>: author:nil ^:{}</span>
 <span class=c># 告诉ox-hugo将导出的markdown文件放到哪里。注意：even主题需要发布到post目录。</span>
+<span class=c># see: https://ox-hugo.scripter.co/#before-you-export</span>
+<span class=cs>#+HUGO_BASE_DIR</span><span class=c>: ../../../hugo</span>
 <span class=cs>#+HUGO_SECTION</span><span class=c>: post/2021/11</span>
 <span class=cs>#+HUGO_CUSTOM_FRONT_MATTER</span><span class=c>: :toc true</span>
 <span class=cs>#+HUGO_AUTO_SET_LASTMOD</span><span class=c>: t</span>
@@ -264,6 +275,7 @@ Hello，World
 </span><span class=lnt>13
 </span><span class=lnt>14
 </span><span class=lnt>15
+</span><span class=lnt>16
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback># -*- mode: snippet -*-
@@ -271,6 +283,7 @@ Hello，World
 # key: hugo
 # --
 #+OPTIONS: author:nil ^:{}
+#+HUGO_BASE_DIR: ../../../hugo
 #+HUGO_SECTION: post/`(format-time-string &#34;%Y/%m&#34;)`
 #+HUGO_CUSTOM_FRONT_MATTER: :toc true
 #+HUGO_AUTO_SET_LASTMOD: t
@@ -367,6 +380,7 @@ $0
 </span><span class=lnt>36
 </span><span class=lnt>37
 </span><span class=lnt>38
+</span><span class=lnt>39
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>GitHub Pages</span><span class=w>
@@ -391,7 +405,8 @@ $0
 </span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
 </span><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2</span><span class=w>
 </span><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;latest&#39;</span><span class=w>
+</span><span class=w>          </span><span class=c># 建议和本地用的版本保持一致，从而获得一致的体验</span><span class=w>
+</span><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0.89&#39;</span><span class=w>
 </span><span class=w>          </span><span class=c># extended: true</span><span class=w>
 </span><span class=w>
 </span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build</span><span class=w>
@@ -451,7 +466,7 @@ cp: no such file or directory: /home/runner/work/blog/hugo/public/*
 </div>
 </div><ul>
 <li>原因：tags的类型不一致，标签混用了数字和字符串</li>
-<li>解决方案：去掉数字类型的标签或使用最新版本的hugo</li>
+<li>解决方案：去掉数字类型的标签或升级至最新版本的hugo</li>
 </ul>
 </li>
 </ul>
@@ -470,7 +485,7 @@ cp: no such file or directory: /home/runner/work/blog/hugo/public/*
 <p class=copyright-item>
 <span class=item-title>上次更新</span>
 <span class=item-content>
-2021-11-28
+2021-11-29
 </span>
 </p>
 <p class=copyright-item>
