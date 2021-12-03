@@ -1,3 +1,10 @@
+@font-face {
+    font-family: iconfont;
+    src: url(https://cdn.jsdelivr.net/gh/superbear/superbear.github.io@master/fonts/iconfont/iconfont.eot);
+    src: url(https://cdn.jsdelivr.net/gh/superbear/superbear.github.io@master/fonts/iconfont/iconfont.eot#iefix)format("embedded-opentype"), url(https://cdn.jsdelivr.net/gh/superbear/superbear.github.io@master/fonts/iconfont/iconfont.woff)format("woff"), url(https://cdn.jsdelivr.net/gh/superbear/superbear.github.io@master/fonts/iconfont/iconfont.ttf)format("truetype"), url(https://cdn.jsdelivr.net/gh/superbear/superbear.github.io@master/fonts/iconfont/iconfont.svg#iconfont)format("svg");
+    font-display: swap
+}
+
 .archive .archive-post .archive-post-title .archive-post-link {
     color: #34495e;
 }
