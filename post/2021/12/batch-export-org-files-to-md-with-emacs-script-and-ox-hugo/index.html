@@ -28,10 +28,10 @@
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://superbear.github.io/post/2021/12/batch-export-org-files-to-md-with-emacs-script-and-ox-hugo/"><meta property="article:section" content="post">
 <meta property="article:published_time" content="2021-12-03T11:32:00+00:00">
-<meta property="article:modified_time" content="2021-12-03T04:12:48+00:00">
+<meta property="article:modified_time" content="2021-12-03T04:24:17+00:00">
 <meta itemprop=name content="使用Emacs Script和ox-hugo包自动将org文件导出为markdown">
 <meta itemprop=description content="接上篇 用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages 痛点 代码仓库里会同时保存org文件和markdown"><meta itemprop=datePublished content="2021-12-03T11:32:00+00:00">
-<meta itemprop=dateModified content="2021-12-03T04:12:48+00:00">
+<meta itemprop=dateModified content="2021-12-03T04:24:17+00:00">
 <meta itemprop=wordCount content="569">
 <meta itemprop=keywords content="emacs-lisp,emacs,ox-hugo,2021,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="使用Emacs Script和ox-hugo包自动将org文件导出为markdown">
@@ -103,14 +103,10 @@
 <ul>
 <li>
 <ul>
-<li>
-<ul>
 <li><a href=#痛点><strong>痛点</strong></a></li>
 <li><a href=#如何解决><strong>如何解决</strong></a></li>
 <li><a href=#存在的问题><strong>存在的问题</strong></a></li>
 <li><a href=#遇到的问题><strong>遇到的问题</strong></a></li>
-</ul>
-</li>
 <li><a href=#参考文档><strong>参考文档</strong></a></li>
 </ul>
 </li>
@@ -120,9 +116,9 @@
 </div>
 <div class=post-content>
 <p>接上篇 <a href=https://superbear.github.io/post/2021/11/use-org-mode-and-hugo-to-write-blog/ target=_blank>用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages</a></p>
-<h3 id=痛点><strong>痛点</strong></h3>
+<h2 id=痛点><strong>痛点</strong></h2>
 <p>代码仓库里会同时保存org文件和markdown文件，markdown文件其实是中间产物，不想保存。</p>
-<h3 id=如何解决><strong>如何解决</strong></h3>
+<h2 id=如何解决><strong>如何解决</strong></h2>
 <p>首先，Emacs是可以执行Emacs Scripts的，写个脚本，然后在Github Action里执行即可。
 <br>
 Emacs环境哪里来？purcell大神已经准备好了。
@@ -131,12 +127,12 @@ Emacs环境哪里来？purcell大神已经准备好了。
 废话不多说，直接上代码。</p>
 <script src=https://gist.github.com/superbear/28fb0dbbca505b5d7d83e10e35b822a4.js></script>
 <p>等等，直接用md写是不是就没有这个痛点了？嗯😄。</p>
-<h3 id=存在的问题><strong>存在的问题</strong></h3>
+<h2 id=存在的问题><strong>存在的问题</strong></h2>
 <p>目前是全量导出，找到制定目录下的全部org文件，然后转成md文件。</p>
 <p>这样每提交一篇文章，就需要处理全部存量文章。另外，全部文章的更新时间都会跟着变，这个和HUGO_AUTO_SET_LASTMOD这个property设置有关。详见：<a href=https://ox-hugo.scripter.co/doc/dates/#last-modified target=_blank>ox-hugo last modified</a>
 <br>
 待改成增量导出。</p>
-<h3 id=遇到的问题><strong>遇到的问题</strong></h3>
+<h2 id=遇到的问题><strong>遇到的问题</strong></h2>
 <ul>
 <li>现象：org导出md文件了，但未生成静态文件
 <ul>
@@ -159,12 +155,9 @@ Emacs环境哪里来？purcell大神已经准备好了。
 </li>
 </ul>
 <h2 id=参考文档><strong>参考文档</strong></h2>
-<p><a href=https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ target=_blank>using ox-hugo without duplicating content in the repository</a>
-<br></p>
-<p><a href=https://github.com/purcell/setup-emacs target=_blank>Github action which installs a given Emacs version</a>
-<br></p>
-<p><a href=http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html target=_blank>如何编写EmacsScript</a>
-<br></p>
+<p><a href=https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ target=_blank>using ox-hugo without duplicating content in the repository</a></p>
+<p><a href=https://github.com/purcell/setup-emacs target=_blank>Github action which installs a given Emacs version</a></p>
+<p><a href=http://blog.lujun9972.win/blog/2016/11/28/%E5%A6%82%E4%BD%95%E7%BC%96%E5%86%99emacsscript/index.html target=_blank>如何编写EmacsScript</a></p>
 <p><a href=https://blog.hly0928.com/post/hugo-post-date-issue/ target=_blank>Hugo 文章日期设定上的小问题</a></p>
 </div>
 <div class=post-copyright>
