@@ -23,16 +23,17 @@
 <link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
 <link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<link rel=stylesheet href=/css/style.css>
 <meta property="og:title" content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages">
 <meta property="og:description" content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有。如blog。 Github Pages仓库，用来">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://superbear.github.io/post/2021/11/use-org-mode-and-hugo-to-write-blog/"><meta property="article:section" content="post">
 <meta property="article:published_time" content="2021-11-28T14:55:00+00:00">
-<meta property="article:modified_time" content="2021-12-03T04:52:30+00:00">
+<meta property="article:modified_time" content="2021-12-03T12:52:43+00:00">
 <meta itemprop=name content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages">
 <meta itemprop=description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有。如blog。 Github Pages仓库，用来"><meta itemprop=datePublished content="2021-11-28T14:55:00+00:00">
-<meta itemprop=dateModified content="2021-12-03T04:52:30+00:00">
-<meta itemprop=wordCount content="1803">
+<meta itemprop=dateModified content="2021-12-03T12:52:43+00:00">
+<meta itemprop=wordCount content="1833">
 <meta itemprop=keywords content="emacs,emacs-lisp,orgmode,hugo,ox-hugo,github-actions,2021,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages">
 <meta name=twitter:description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有。如blog。 Github Pages仓库，用来"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -92,7 +93,7 @@
 <div class=post-category>
 <a href=/categories/tools/> tools </a>
 </div>
-<span class=more-meta> 约 1803 字 </span>
+<span class=more-meta> 约 1833 字 </span>
 <span class=more-meta> 预计阅读 4 分钟 </span>
 </div>
 </header>
@@ -145,7 +146,7 @@
 <div target=_blank>
 <div></div>
 <ul>
-<li>说明：Hugo支持Org Mode（通过go-org，详见：<a href=https://gohugo.io/content-management/formats>Hugo Content Formats</a>），但据说支持得不是很好（未亲测）。毕竟Emacs Lisp处理org文件相关的包比Go多，就直接用ox-hugo转md的方案了。</li>
+<li>说明：Hugo支持Org Mode（通过go-org，详见：<a href=https://gohugo.io/content-management/formats>Hugo Content Formats</a>），但据说支持得不是很好（未亲测）。毕竟Emacs Lisp处理org文件相关的包比Go多，就直接用ox-hugo转markdown的方案了。</li>
 </ul>
 </div>
 <p>不是Emacs用户？</p>
@@ -158,9 +159,9 @@
 <li>Emacs 27.1</li>
 <li>Org Mode 9.3</li>
 <li>ox-hugo 20210916.1332</li>
-<li>hugo v0.89.4</li>
+<li>Hugo v0.89.4</li>
 </ul>
-<p>1、配置hugo</p>
+<p>1、配置Hugo</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -184,7 +185,7 @@ git submodule add https://github.com/olOwOlo/hugo-theme-even.git hugo/themes/eve
 </span><span class=lnt>2
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=c1># 配置修改、md文件改动都会被监控到</span>
+<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=c1># 配置修改、markdown文件改动都会被监控到</span>
 <span class=nb>cd</span> blog <span class=o>&amp;&amp;</span> hugo --source hugo server -D
 </code></pre></td></tr></table>
 </div>
@@ -254,15 +255,15 @@ git submodule add https://github.com/olOwOlo/hugo-theme-even.git hugo/themes/eve
 Hello，World
 </code></pre></td></tr></table>
 </div>
-</div><p>3、导出org到md文件</p>
+</div><p>3、导出org到markdown文件</p>
 <ul>
-<li>在Emacs里执行C-c C-e H h（File to Md file）导出整个org文件到md文件，也可以导出subtree，具体看个人喜好</li>
+<li>在Emacs里执行C-c C-e H h（File to Md file）导出整个org文件到markdown文件，也可以导出subtree，具体看个人喜好</li>
 </ul>
 <p>4、访问<a href=http://127.0.0.1:1313/ target=_blank>http://127.0.0.1:1313/</a>
 <br>
 5、正常情况就会看到博客界面啦
 <br>
-6、提交org及md文件到blog仓库
+6、提交org及markdown文件到blog仓库
 <br>
 7、使用Yasnippet（推荐）
 下次新建文件就不用copy一些元数据</p>
@@ -473,7 +474,7 @@ cp: no such file or directory: /home/runner/work/blog/hugo/public/*
 </ul>
 </li>
 <li>
-<p>hugo生成静态文件报错，报错信息如下：</p>
+<p>Hugo生成静态文件报错，报错信息如下：</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1

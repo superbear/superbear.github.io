@@ -23,16 +23,17 @@
 <link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
 <link href=/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css rel=stylesheet>
 <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
+<link rel=stylesheet href=/css/style.css>
 <meta property="og:title" content="使用Emacs Script和ox-hugo包自动将org文件导出为markdown">
 <meta property="og:description" content="接上篇 用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages 痛点 代码仓库里会同时保存org文件和markdown">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://superbear.github.io/post/2021/12/batch-export-org-files-to-md-with-emacs-script-and-ox-hugo/"><meta property="article:section" content="post">
 <meta property="article:published_time" content="2021-12-03T11:32:00+00:00">
-<meta property="article:modified_time" content="2021-12-03T04:52:30+00:00">
+<meta property="article:modified_time" content="2021-12-03T12:52:43+00:00">
 <meta itemprop=name content="使用Emacs Script和ox-hugo包自动将org文件导出为markdown">
 <meta itemprop=description content="接上篇 用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages 痛点 代码仓库里会同时保存org文件和markdown"><meta itemprop=datePublished content="2021-12-03T11:32:00+00:00">
-<meta itemprop=dateModified content="2021-12-03T04:52:30+00:00">
-<meta itemprop=wordCount content="583">
+<meta itemprop=dateModified content="2021-12-03T12:52:43+00:00">
+<meta itemprop=wordCount content="601">
 <meta itemprop=keywords content="emacs-lisp,emacs,ox-hugo,2021,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="使用Emacs Script和ox-hugo包自动将org文件导出为markdown">
 <meta name=twitter:description content="接上篇 用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages 痛点 代码仓库里会同时保存org文件和markdown"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -92,7 +93,7 @@
 <div class=post-category>
 <a href=/categories/tools/> tools </a>
 </div>
-<span class=more-meta> 约 583 字 </span>
+<span class=more-meta> 约 601 字 </span>
 <span class=more-meta> 预计阅读 2 分钟 </span>
 </div>
 </header>
@@ -139,15 +140,15 @@ Emacs环境哪里来？purcell大神已经准备好了。
 <span class=c>#+END_EXPORT</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>等等，直接用md写是不是就没有这个痛点了？嗯😄。</p>
+</div><p>等等，直接用markdown写是不是就没有这个痛点了？嗯😄。</p>
 <h2 id=存在的问题><strong>存在的问题</strong></h2>
-<p>目前是全量导出，找到制定目录下的全部org文件，然后转成md文件。</p>
+<p>目前是全量导出，找到制定目录下的全部org文件，然后转成markdown文件。</p>
 <p>这样每提交一篇文章，就需要处理全部存量文章。另外，全部文章的更新时间都会跟着变，这个和HUGO_AUTO_SET_LASTMOD这个property设置有关。详见：<a href=https://ox-hugo.scripter.co/doc/dates/#last-modified target=_blank>ox-hugo last modified</a>
 <br>
 待改成增量导出。</p>
 <h2 id=遇到的问题><strong>遇到的问题</strong></h2>
 <ul>
-<li>现象：org导出md文件了，但未生成静态文件
+<li>现象：org导出markdown文件了，但未生成静态文件
 <ul>
 <li>原因：时区问题。Github Action是按UTC时间执行的，而文件的发布日期是东八区的，这样Hugo可能会看到发布日期还未到，就先不会处理了。</li>
 <li>解决方案：
