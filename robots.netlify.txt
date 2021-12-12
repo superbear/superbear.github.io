@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: baiduspider
+Allow: /
+
+Sitemap: https://superbear.netlify.app/sitemap.xml
