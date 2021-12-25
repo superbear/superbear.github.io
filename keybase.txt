@@ -1,0 +1,72 @@
+==================================================================
+https://keybase.io/superbear
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://superbear.github.io
+  * I am superbear (https://keybase.io/superbear) on keybase.
+  * I have a public key with fingerprint 8353 5A9D 6E28 BC3B 078A  47D9 376E 51A5 D1A2 D608
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01019aeb52f2c6262173f3f7f29be8195739bbd87bad94e17f0081ddd9400deb98920a",
+      "fingerprint": "83535a9d6e28bc3b078a47d9376e51a5d1a2d608",
+      "host": "keybase.io",
+      "key_id": "376e51a5d1a2d608",
+      "kid": "01019aeb52f2c6262173f3f7f29be8195739bbd87bad94e17f0081ddd9400deb98920a",
+      "uid": "6448517558e6b5ed0dd22beba238bb19",
+      "username": "superbear"
+    },
+    "service": {
+      "hostname": "superbear.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1640436664,
+  "expire_in": 157680000,
+  "prev": "ccd8e35deb7ee7c6b95399e7a77e7d4800d37148d344dfe0b2c16716ec748d01",
+  "seqno": 2,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+
+owGtUn1MVWUcvlxQEGSXMairDhlniQgI5/vjbt0upiiCfCTaDAae95z3ck/APZdz
+D1cYfkQKRjC7sw8tk8AmqcsEuZIwiAotJrkZmShNJqUZhAS0lQOcnUP5T+vP3n/e
+vc+e53mf57efN9TfEOT3cPr4+RUpv3F+A2PAwH8dUVOFAFmsRCxVSDFcuGCJCN1q
+YbEkIhYExVCM4yGgcDsu0DiNYwxhJ+yMHecAZDGOYggOAJFlAC9yJMQYO4qymChq
+DxQVIeBYDkd5JBGxS84iqLgUyalqtixBERTPiTTEWSAQAGVYnmREjmBoSGE8JWI8
+LtIoqwkdsltXaOEA74ZJkqxh2qNwId5/8P/n3OULdjRJshTGUBQLaUBBERVFHAcQ
+8DjBAoBxOtENFSdfCjW2u9wFFQB5BdmTiGiwRxKgPlm9yr8pSUWS6igHf/dyKbIq
+C3KJRnCoqstt0Q3USpeu2AVB4T9ehUByito8NYUHKm5JdiIWTGMKqqSbYzSJkgRN
+02QiAitckgILJZ1BMTSLakf/B3oQy05EEEQWEpTWl4GQEWjAUQTHQYZnGMiIpMYW
+CQYjWZEgSdEOUYALGM1gNBQYDUQxRK9X5pQRC67l5Iv0YlKRk1fLFYjsCa4zEgEG
+vyBD1FMxAe53jlv5oqhYczf5yZMdXGTUF9AQvCTsCXKNMT22DT3fvDX4bMzeqqym
+E7hpePJOmONWbfs2YVVX9PIt43eN/tNXx597dGRF56uZ4dLQRMZp80Re3Xchr+T5
++aZo8+bYlgZH1lfY0s7XHc+kljR9u9L/rYvJEWfp3Y/T24OWXt4wxxuzoluDOuTc
+gpURyzNSRsnw5lUtV04iVfP7TBkFo1KkNbnLNhA9/d6nvVAO9C4+eaLAdd7IHM15
+mjtqu72mZqetqyY73tgd9pHj4AziRYyX5rkS5OHp9LZsb39jk3PmGt93H7kSTPTF
+T0+8eNe7Pc3Q9UV1pX/m4A/1P7YNVO5ane5VTTl9kdG5pdV86p01+9hfklPnEEP7
+N7V8ZtmiBKWq1xTRsHu0I6dxImNqLsu3v7WzR/ww+Pb3I8mDN4itnz2wzvaM1X5u
+8o0sG2psPFRnu+++EDt6gR9L31TaY19rvnF4/fp7Q57Df+TPRG03XTxVk/d+aGj3
+0FTFzxvk2XtblMstFQ3DZutaJzccWDwf4vup90F1+80z1DLbur7JtgDfByGL+7t7
+z7UeS7oUH1fty6vP2fvupjLlpvXY3O/uXzs8iidu/7ovU2aSIus3Zw/uANvOdDb2
+b8w/EPNCUJqq5AwcdFoTrlqI16Ke3fhn/qGwkbaE69UvBY4Upwn49Udxhuhzg6lL
+doybIz9+u7nvVmSugww/9fKb+ZNvEAe42cG/AA==
+=ZEuA
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/superbear
+
+==================================================================
