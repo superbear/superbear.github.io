@@ -33,7 +33,7 @@
 <meta itemprop=name content="两步验证（2FA）Emacs插件及命令行版工具">
 <meta itemprop=description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><meta itemprop=datePublished content="2022-01-09T19:18:00+08:00">
 <meta itemprop=dateModified content="2022-01-09T19:18:00+08:00">
-<meta itemprop=wordCount content="1018">
+<meta itemprop=wordCount content="1077">
 <meta itemprop=keywords content="totp,emacs-totp,2fa,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="两步验证（2FA）Emacs插件及命令行版工具">
 <meta name=twitter:description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -93,7 +93,7 @@
 <div class=post-category>
 <a href=/categories/tools/> tools </a>
 </div>
-<span class=more-meta> 约 1018 字 </span>
+<span class=more-meta> 约 1077 字 </span>
 <span class=more-meta> 预计阅读 3 分钟 </span>
 </div>
 </header>
@@ -154,14 +154,14 @@
 <h3 id=emacs-totp>Emacs-Totp</h3>
 <p><a href=https://github.com/juergenhoetzel/emacs-totp target=_blank rel=noopener>emacs-totp</a>
 （Emacs 27.1+）
-<img src=~/Desktop/workspace/github/blog/hugo/static/images/emacs-totp-widget.gif alt>
+<img src=/images/emacs-totp-widget.gif alt>
 (from Github)</p>
-<p>配置方法：大部分OTP的密钥是<a href=https://datatracker.ietf.org/doc/html/rfc4648#section-6 target=_blank rel=noopener>Base32 rfc4648</a>
+<p>配置方法：大部分OTP的密钥是<a href=https://datatracker.ietf.org/doc/html/rfc4648#section-6 target=_blank rel=noopener>Base32 RFC4648</a>
 编码的，Emacs不支持，需要转换成Hex格式的。
-部分密钥格式不是很标准，结尾缺少=（Padding），导致转换失败。</p>
+部分密钥格式不是很标准，结尾缺少=（Padding），需要补全后再转换。</p>
 <p>在线转换：<a href=https://cryptii.com/pipes/base32-to-hex target=_blank rel=noopener>base32-to-hex</a>
 ，会自动补全结尾的Padding，挺方便。</p>
-<p>base32命令转换</p>
+<p>命令行转换</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
 <pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -209,8 +209,8 @@
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=ch>#!/bin/env python</span>
 <span class=c1># -*- coding:utf-8 -*-</span>
-<span class=kn>import</span> <span class=nn>base64</span>
 <span class=kn>import</span> <span class=nn>sys</span>
+<span class=kn>import</span> <span class=nn>base64</span>
 
 <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>:</span>
     <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Please input base32 format key&#34;</span><span class=p>)</span>
@@ -239,6 +239,19 @@
     <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Hex Format key: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>base64</span><span class=o>.</span><span class=n>b32decode</span><span class=p>(</span><span class=n>key</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>)))</span>
 <span class=k>except</span> <span class=ne>TypeError</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
     <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Decode failed, error: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>)))</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>OTP密钥加密保存</p>
+<div class=highlight><div class=chroma>
+<table class=lntable><tr><td class=lntd>
+<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td>
+<td class=lntd>
+<pre tabindex=0 class=chroma><code class=language-elisp data-lang=elisp><span class=c1>;;; 配置文件中加入以下语句，也可通过M-x customize-variable配置</span>
+<span class=p>(</span><span class=nb>setq</span> <span class=nv>auth-source-gpg-encrypt-to</span> <span class=o>&#39;</span><span class=p>(</span><span class=s>&#34;your gpg key&#34;</span><span class=p>))</span>
+<span class=p>(</span><span class=nb>setq</span> <span class=nv>auth-sources</span> <span class=o>&#39;</span><span class=p>(</span><span class=s>&#34;~/.authinfo.gpg&#34;</span> <span class=s>&#34;~/.authinfo&#34;</span> <span class=s>&#34;~/.netrc&#34;</span><span class=p>))</span>
 </code></pre></td></tr></table>
 </div>
 </div><h3 id=totp命令行>Totp命令行</h3>
