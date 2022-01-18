@@ -33,7 +33,7 @@
 <meta itemprop=name content="两步验证（2FA）Emacs插件及命令行版工具">
 <meta itemprop=description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><meta itemprop=datePublished content="2022-01-09T19:18:00+08:00">
 <meta itemprop=dateModified content="2022-01-09T19:18:00+08:00">
-<meta itemprop=wordCount content="1075">
+<meta itemprop=wordCount content="1127">
 <meta itemprop=keywords content="totp,emacs-totp,2fa,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="两步验证（2FA）Emacs插件及命令行版工具">
 <meta name=twitter:description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -93,7 +93,7 @@
 <div class=post-category>
 <a href=/categories/tools/> tools </a>
 </div>
-<span class=more-meta> 约 1075 字 </span>
+<span class=more-meta> 约 1127 字 </span>
 <span class=more-meta> 预计阅读 3 分钟 </span>
 </div>
 </header>
@@ -112,8 +112,8 @@
 </li>
 <li><a href=#totp相关软件>TOTP相关软件</a>
 <ul>
-<li><a href=#emacs-totp>Emacs-Totp</a></li>
-<li><a href=#totp命令行>Totp命令行</a></li>
+<li><a href=#emacs-totp>Emacs-TOTP</a></li>
+<li><a href=#totp命令行>TOTP命令行</a></li>
 </ul>
 </li>
 </ul>
@@ -151,7 +151,7 @@
 不慎遗失的话，账号很可能找不回来了。</p>
 <h2 id=totp相关软件>TOTP相关软件</h2>
 <p>简单介绍了两步验证的基础知识，下面就来介绍几款命令行版本的两步验证（TOTP版）工具。</p>
-<h3 id=emacs-totp>Emacs-Totp</h3>
+<h3 id=emacs-totp>Emacs-TOTP</h3>
 <p><a href=https://github.com/juergenhoetzel/emacs-totp target=_blank rel=noopener>emacs-totp</a>
 （Emacs 27.1+）
 <img src=/images/emacs-totp-widget.gif alt>
@@ -254,10 +254,15 @@
 <span class=p>(</span><span class=nb>setq</span> <span class=nv>auth-sources</span> <span class=o>&#39;</span><span class=p>(</span><span class=s>&#34;~/.authinfo.gpg&#34;</span> <span class=s>&#34;~/.authinfo&#34;</span> <span class=s>&#34;~/.netrc&#34;</span><span class=p>))</span>
 </code></pre></td></tr></table>
 </div>
-</div><h3 id=totp命令行>Totp命令行</h3>
-<p>目前在用的是<a href=https://github.com/arcanericky/totp target=_blank rel=noopener>totp</a>
+</div><h3 id=totp命令行>TOTP命令行</h3>
+<ul>
+<li><a href=https://github.com/tadfisher/pass-otp target=_blank rel=noopener>pass-otp</a>
+，一款用来管理OTP Token的<a href=https://wiki.archlinux.org/title/Pass target=_blank rel=noopener>pass</a>
+软件扩展。其中，pass是一款简单的命令行版密码管理器，使用GPG加密密码文件。</li>
+<li><a href=https://github.com/arcanericky/totp target=_blank rel=noopener>totp</a>
 （Go版本），用法见README。该作者还写了个C语言版本的<a href=https://github.com/arcanericky/ga-cmd target=_blank rel=noopener>ga-cmd</a>
-。</p>
+。</li>
+</ul>
 <section class=footnotes role=doc-endnotes>
 <hr>
 <ol>
