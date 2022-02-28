@@ -246,11 +246,12 @@
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id=遇到的问题>遇到的问题</h2>
-<p>1、写了一部分数据，任务失败了。报错信息：Exception in thread &ldquo;xxx&rdquo; java.lang.NoClassDefFoundError: org/antlr/runtime/tree/CommonTree</p>
-<p>原因：用作doc_id的字段存在NULL值。处理下这部分数据，任务就可以正常运行了。
+<p>1、写了一部分数据，任务失败了。报错信息：Exception in thread &ldquo;xxx&rdquo; java.lang.NoClassDefFoundError: org/antlr/runtime/tree/CommonTree
 <br>
-2、如何限速</p>
-<p>在<a href=https://github.com/elastic/elasticsearch-hadoop/issues/1400 target=_blank rel=noopener>elasticsearch-hadoop</a>
+原因：用作doc_id的字段存在NULL值。处理下这部分数据，任务就可以正常运行了。</p>
+<p>2、如何限速
+<br>
+在<a href=https://github.com/elastic/elasticsearch-hadoop/issues/1400 target=_blank rel=noopener>elasticsearch-hadoop</a>
 找了下没有直接限速方案。可通过控制计算引擎的worker数量来间接限速。</p>
 <div class=highlight><div class=chroma>
 <table class=lntable><tr><td class=lntd>
