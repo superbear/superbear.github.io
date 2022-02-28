@@ -33,7 +33,7 @@
 <meta itemprop=name content="Hive读写（集成）Elasticsearch">
 <meta itemprop=description content="部分业务场景需要将Hive（离线数仓）数据同步到Elasticsearch集群里，供在线业务使用； 或将Elasticsearch的数据写入H"><meta itemprop=datePublished content="2022-02-28T13:20:00+08:00">
 <meta itemprop=dateModified content="2022-02-28T13:20:00+08:00">
-<meta itemprop=wordCount content="1127">
+<meta itemprop=wordCount content="1077">
 <meta itemprop=keywords content="hive,elasticsearch,"><meta name=twitter:card content="summary">
 <meta name=twitter:title content="Hive读写（集成）Elasticsearch">
 <meta name=twitter:description content="部分业务场景需要将Hive（离线数仓）数据同步到Elasticsearch集群里，供在线业务使用； 或将Elasticsearch的数据写入H"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
@@ -93,7 +93,7 @@
 <div class=post-category>
 <a href=/categories/bigdata/> bigdata </a>
 </div>
-<span class=more-meta> 约 1127 字 </span>
+<span class=more-meta> 约 1077 字 </span>
 <span class=more-meta> 预计阅读 3 分钟 </span>
 </div>
 </header>
@@ -126,11 +126,13 @@
 <pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
+</span><span class=lnt>4
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=c1>-- 测试阶段可先不下载，直接从maven仓库拉取即可
 </span><span class=c1></span><span class=k>ADD</span><span class=w> </span><span class=n>JAR</span><span class=w> </span><span class=n>ivy</span><span class=p>:</span><span class=o>//</span><span class=n>org</span><span class=p>.</span><span class=n>elasticsearch</span><span class=p>:</span><span class=n>elasticsearch</span><span class=o>-</span><span class=n>hadoop</span><span class=p>:</span><span class=mi>7</span><span class=p>.</span><span class=mi>15</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span><span class=w>
-</span><span class=w></span><span class=c1>-- ADD JAR /${path}/elasticsearch-hadoop-${version}.jar;
+</span><span class=w></span><span class=c1>-- 生产环境建议上传至hdfs集群
+</span><span class=c1>-- ADD JAR /${path}/elasticsearch-hadoop-${version}.jar;
 </span></code></pre></td></tr></table>
 </div>
 </div><p>3、新建Hive外表。完整配置项及字段类型映射见<a href=https://www.elastic.co/guide/en/elasticsearch/hadoop/current/hive.html target=_blank rel=noopener>Apache Hive integration</a>
@@ -162,11 +164,9 @@
 </span><span class=lnt>23
 </span><span class=lnt>24
 </span><span class=lnt>25
-</span><span class=lnt>26
 </span></code></pre></td>
 <td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=c1>-- 需要修改表结构，删除重建表即可，非原生Hive表不支持通过ALTER语句修改。不会删除Elasticsearch集群的数据。
-</span><span class=c1>-- DROP TABLE default.es_xxx
+<pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=c1>-- DROP TABLE default.es_xxx
 </span><span class=c1></span><span class=k>CREATE</span><span class=w> </span><span class=k>EXTERNAL</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=k>IF</span><span class=w> </span><span class=k>NOT</span><span class=w> </span><span class=k>EXISTS</span><span class=w> </span><span class=k>default</span><span class=p>.</span><span class=n>es_xxx</span><span class=p>(</span><span class=w>
 </span><span class=w>    </span><span class=n>doc_id</span><span class=w> </span><span class=n>STRING</span><span class=w> </span><span class=k>COMMENT</span><span class=w> </span><span class=s1>&#39;ID&#39;</span><span class=p>,</span><span class=w>
 </span><span class=w>    </span><span class=n>field1</span><span class=w> </span><span class=n>STRING</span><span class=w> </span><span class=k>COMMENT</span><span class=w> </span><span class=s1>&#39;字段1&#39;</span><span class=p>,</span><span class=w>
@@ -242,7 +242,7 @@
 </span></code></pre></td>
 <td class=lntd>
 <pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=c1>-- 非原生Hive表不支持通过ALTER语句修改
-</span><span class=c1>-- DROP TABLE default.es_xxx
+</span><span class=c1></span><span class=k>DROP</span><span class=w> </span><span class=k>TABLE</span><span class=w> </span><span class=k>default</span><span class=p>.</span><span class=n>es_xxx</span><span class=w>
 </span></code></pre></td></tr></table>
 </div>
 </div><h2 id=遇到的问题>遇到的问题</h2>
