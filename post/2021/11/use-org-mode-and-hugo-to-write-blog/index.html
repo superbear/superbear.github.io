@@ -1,225 +1,38 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
-<title>用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages - superbear's blog</title>
-<meta name=renderer content="webkit">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta http-equiv=cache-control content="no-transform">
-<meta http-equiv=cache-control content="no-siteapp">
-<meta name=theme-color content="#f8f5ec">
-<meta name=msapplication-navbutton-color content="#f8f5ec">
-<meta name=apple-mobile-web-app-capable content="yes">
-<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
-<meta name=author content="superbear"><meta name=description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。 Github Pages仓库，用来"><meta name=keywords content="superbear,Golang,Go,PHP,Emacs">
-<meta name=baidu-site-verification content="code-jiYYRFXqhi">
-<meta name=google-site-verification content="4gfOaQRBgyyUQH-KbXpHZnAB6Ilcn1sxavDAkvN7W7Y">
-<meta name=generator content="Hugo 0.90.0 with theme even">
-<link rel=canonical href=https://superbear.github.io/post/2021/11/use-org-mode-and-hugo-to-write-blog/>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=manifest href=/manifest.json>
-<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
-<link href=/sass/main.min.9d4e32632e588e67009bca24dcd91c7ff5a74cb7b0017dfc1d97d1543bf16774.css rel=stylesheet>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
-<link rel=stylesheet href=/css/style.css>
-<meta property="og:title" content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages">
-<meta property="og:description" content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。 Github Pages仓库，用来">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://superbear.github.io/post/2021/11/use-org-mode-and-hugo-to-write-blog/"><meta property="article:section" content="post">
-<meta property="article:published_time" content="2021-11-28T14:55:00+08:00">
-<meta property="article:modified_time" content="2021-12-05T00:00:00+00:00">
-<meta itemprop=name content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages">
-<meta itemprop=description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。 Github Pages仓库，用来"><meta itemprop=datePublished content="2021-11-28T14:55:00+08:00">
-<meta itemprop=dateModified content="2021-12-05T00:00:00+00:00">
-<meta itemprop=wordCount content="1823">
-<meta itemprop=keywords content="emacs,org-mode,hugo,ox-hugo,github-actions,2021,"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages">
-<meta name=twitter:description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。 Github Pages仓库，用来"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
-</head>
-<body>
-<div id=mobile-navbar class=mobile-navbar>
-<div class=mobile-header-logo>
-<a href=/ class=logo>superbear's blog</a>
-</div>
-<div class=mobile-navbar-icon>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages - superbear's blog</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="superbear"><meta name=description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。 Github Pages仓库，用来"><meta name=keywords content="superbear,Golang,Go,PHP,Emacs"><meta name=baidu-site-verification content="code-jiYYRFXqhi"><meta name=google-site-verification content="4gfOaQRBgyyUQH-KbXpHZnAB6Ilcn1sxavDAkvN7W7Y"><meta name=generator content="Hugo 0.102.3 with theme even"><link rel=canonical href=https://superbear.github.io/post/2021/11/use-org-mode-and-hugo-to-write-blog/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.9d51f4c53063c1c4749de6c5518204f0befc08dd7a77dc72f2ba305105c35dfa.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><link rel=stylesheet href=/css/style.css><meta property="og:title" content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages"><meta property="og:description" content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。 Github Pages仓库，用来"><meta property="og:type" content="article"><meta property="og:url" content="https://superbear.github.io/post/2021/11/use-org-mode-and-hugo-to-write-blog/"><meta property="article:section" content="post"><meta property="article:published_time" content="2021-11-28T14:55:00+08:00"><meta property="article:modified_time" content="2021-12-05T00:00:00+00:00"><meta itemprop=name content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages"><meta itemprop=description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。 Github Pages仓库，用来"><meta itemprop=datePublished content="2021-11-28T14:55:00+08:00"><meta itemprop=dateModified content="2021-12-05T00:00:00+00:00"><meta itemprop=wordCount content="1809"><meta itemprop=keywords content="emacs,org-mode,hugo,ox-hugo,github-actions,2021,"><meta name=twitter:card content="summary"><meta name=twitter:title content="用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages"><meta name=twitter:description content="准备工作 创建两个Github仓库 用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。 Github Pages仓库，用来"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>superbear's blog</a></div><div class=mobile-navbar-icon><span></span>
 <span></span>
-<span></span>
-<span></span>
-</div>
-</div>
-<nav id=mobile-menu class="mobile-menu slideout-menu">
-<ul class=mobile-menu-list>
-<a href=/>
-<li class=mobile-menu-item>Home</li>
-</a><a href=/post/>
-<li class=mobile-menu-item>Archives</li>
-</a><a href=/tags/>
-<li class=mobile-menu-item>Tags</li>
-</a><a href=/categories/>
-<li class=mobile-menu-item>Categories</li>
-</a>
-</ul>
-</nav>
-<div class=container id=mobile-panel>
-<header id=header class=header>
-<div class=logo-wrapper>
-<a href=/ class=logo>superbear's blog</a>
-</div>
-<nav class=site-navbar>
-<ul id=menu class=menu>
-<li class=menu-item>
-<a class=menu-item-link href=/>Home</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/post/>Archives</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/tags/>Tags</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/categories/>Categories</a>
-</li>
-</ul>
-</nav>
-</header>
-<main id=main class=main>
-<div class=content-wrapper>
-<div id=content class=content>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages</h1>
-<div class=post-meta>
-<span class=post-time> 2021-11-28 </span>
-<div class=post-category>
-<a href=/categories/tools/> tools </a>
-</div>
-<span class=more-meta> 约 1823 字 </span>
-<span class=more-meta> 预计阅读 4 分钟 </span>
-</div>
-</header>
-<div class=post-toc id=post-toc>
-<h2 class=post-toc-title>目录</h2>
-<div class="post-toc-content always-active">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#准备工作>准备工作</a>
-<ul>
-<li><a href=#配置环境>配置环境</a></li>
-</ul>
-</li>
-<li><a href=#写博客>写博客</a>
-<ul>
-<li><a href=#目录结构>目录结构</a></li>
-</ul>
-</li>
-<li><a href=#部署篇>部署篇</a>
-<ul>
-<li><a href=#配置github-action>配置Github Action</a></li>
-<li><a href=#配置deploy-key>配置DEPLOY_KEY</a></li>
-</ul>
-</li>
-<li><a href=#遇到的问题>遇到的问题</a></li>
-<li><a href=#参考文档>参考文档</a></li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-<div class=post-content>
-<h2 id=准备工作>准备工作</h2>
-<p>创建两个Github仓库</p>
-<ul>
-<li>用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。</li>
-<li>Github Pages仓库，用来放生成的静态文件。一般是{username}.github.io。</li>
-</ul>
-<p>安装<a href=https://gohugo.io/getting-started/quick-start/ target=_blank rel=noopener>Hugo</a>
-</p>
-<ul>
-<li>a static site generator written in Go</li>
-</ul>
-<p>安装<a href=https://ox-hugo.scripter.co/ target=_blank rel=noopener>ox-hugo</a>
-</p>
-<ul>
-<li>将org文件翻译成markdown文件，written in Emacs Lisp。Hugo支持Org Mode，但据说支持得不是很好<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>。毕竟Emacs Lisp处理org文件相关的包比Go多，就直接用ox-hugo转markdown的方案了。</li>
-</ul>
-<p>不是Emacs用户？</p>
-<ul>
-<li>可跳过Org Mode相关内容</li>
-</ul>
-<h3 id=配置环境>配置环境</h3>
-<p>各软件版本</p>
-<ul>
-<li>Emacs 27.1</li>
-<li>Org Mode 9.3</li>
-<li>ox-hugo 20210916.1332</li>
-<li>Hugo v0.89.4</li>
-</ul>
-<p>1、配置Hugo</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>superbear's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>用Org Mode + Hugo写博客，并通过Github Action自动部署到Github Pages</h1><div class=post-meta><span class=post-time>2021-11-28</span><div class=post-category><a href=/categories/tools/>tools</a></div><span class=more-meta>约 1809 字</span>
+<span class=more-meta>预计阅读 4 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#准备工作>准备工作</a><ul><li><a href=#配置环境>配置环境</a></li></ul></li><li><a href=#写博客>写博客</a><ul><li><a href=#目录结构>目录结构</a></li></ul></li><li><a href=#部署篇>部署篇</a><ul><li><a href=#配置github-action>配置Github Action</a></li><li><a href=#配置deploy-key>配置DEPLOY_KEY</a></li></ul></li><li><a href=#遇到的问题>遇到的问题</a></li><li><a href=#参考文档>参考文档</a></li></ul></li></ul></nav></div></div><div class=post-content><h2 id=准备工作>准备工作</h2><p>创建两个Github仓库</p><ul><li>用来放org文件、markdown文件及Hugo相关配置，可以设置成私有，如blog。</li><li>Github Pages仓库，用来放生成的静态文件。一般是{username}.github.io。</li></ul><p>安装<a href=https://gohugo.io/getting-started/quick-start/ target=_blank rel=noopener>Hugo</a></p><ul><li>a static site generator written in Go</li></ul><p>安装<a href=https://ox-hugo.scripter.co/ target=_blank rel=noopener>ox-hugo</a></p><ul><li>将org文件翻译成markdown文件，written in Emacs Lisp。Hugo支持Org Mode，但据说支持得不是很好<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>。毕竟Emacs Lisp处理org文件相关的包比Go多，就直接用ox-hugo转markdown的方案了。</li></ul><p>不是Emacs用户？</p><ul><li>可跳过Org Mode相关内容</li></ul><h3 id=配置环境>配置环境</h3><p>各软件版本</p><ul><li>Emacs 27.1</li><li>Org Mode 9.3</li><li>ox-hugo 20210916.1332</li><li>Hugo v0.89.4</li></ul><p>1、配置Hugo</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=c1># 在blog仓库中新建hugo site</span>
-<span class=nb>cd</span> /path/to/blog <span class=o>&amp;&amp;</span> hugo new site hugo
-<span class=c1># 选个主题，并设置成子模块（后续升级/替换都比较方便）</span>
-git submodule add https://github.com/olOwOlo/hugo-theme-even.git hugo/themes/even
-<span class=c1># 修改默认配置</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>2、开启本地实时预览</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 在blog仓库中新建hugo site</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /path/to/blog <span class=o>&amp;&amp;</span> hugo new site hugo
+</span></span><span class=line><span class=cl><span class=c1># 选个主题，并设置成子模块（后续升级/替换都比较方便）</span>
+</span></span><span class=line><span class=cl>git submodule add https://github.com/olOwOlo/hugo-theme-even.git hugo/themes/even
+</span></span><span class=line><span class=cl><span class=c1># 修改默认配置</span>
+</span></span></code></pre></td></tr></table></div></div><p>2、开启本地实时预览</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=c1># 配置修改、markdown文件改动都会被监控到</span>
-<span class=nb>cd</span> blog <span class=o>&amp;&amp;</span> hugo --source hugo server -D
-</code></pre></td></tr></table>
-</div>
-</div><p>3、配置ox-hugo</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 配置修改、markdown文件改动都会被监控到</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> blog <span class=o>&amp;&amp;</span> hugo --source hugo server -D
+</span></span></code></pre></td></tr></table></div></div><p>3、配置ox-hugo</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-elisp data-lang=elisp><span class=c1>;;; 在init.el里或其他文件里加以下代码</span>
-<span class=p>(</span><span class=nb>with-eval-after-load</span> <span class=ss>&#39;ox</span>
-  <span class=p>(</span><span class=nb>require</span> <span class=ss>&#39;ox-hugo</span><span class=p>))</span>
-
-<span class=c1>;;; 可选。全局配置，如导出目录等字段，也可以在org文件里进行配置</span>
-<span class=c1>;;; M-x customize-variable org-hugo</span>
-</code></pre></td></tr></table>
-</div>
-</div><h2 id=写博客>写博客</h2>
-<p>1、新建org目录及文件</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-lisp data-lang=lisp><span class=line><span class=cl><span class=c1>;;; 在init.el里或其他文件里加以下代码</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=nv>with-eval-after-load</span> <span class=ss>&#39;ox</span>
+</span></span><span class=line><span class=cl>  <span class=p>(</span><span class=nf>require</span> <span class=ss>&#39;ox-hugo</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>;;; 可选。全局配置，如导出目录等字段，也可以在org文件里进行配置</span>
+</span></span><span class=line><span class=cl><span class=c1>;;; M-x customize-variable org-hugo</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=写博客>写博客</h2><p>1、新建org目录及文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=nb>cd</span> blog <span class=o>&amp;&amp;</span> mkdir -p org/2021/11
-<span class=c1># 可选，可以不按年月日分拆分目录。拆分后方便管理，但如果用户直接访问某年的数据，页面就会404</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>2、新建org文件，如test.org</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> blog <span class=o>&amp;&amp;</span> mkdir -p org/2021/11
+</span></span><span class=line><span class=cl><span class=c1># 可选，可以不按年月日分拆分目录。拆分后方便管理，但如果用户直接访问某年的数据，页面就会404</span>
+</span></span></code></pre></td></tr></table></div></div><p>2、新建org文件，如test.org</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -233,39 +46,22 @@ git submodule add https://github.com/olOwOlo/hugo-theme-even.git hugo/themes/eve
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-org data-lang=org><span class=cs>#+OPTIONS</span><span class=c>: author:nil ^:{}</span>
-<span class=c># 告诉ox-hugo将导出的markdown文件放到哪里。注意：even主题需要发布到post目录。</span>
-<span class=c># see: https://ox-hugo.scripter.co/#before-you-export</span>
-<span class=cs>#+HUGO_BASE_DIR</span><span class=c>: ../../../hugo</span>
-<span class=cs>#+HUGO_SECTION</span><span class=c>: post/2021/11</span>
-<span class=cs>#+HUGO_CUSTOM_FRONT_MATTER</span><span class=c>: :toc true</span>
-<span class=cs>#+HUGO_AUTO_SET_LASTMOD</span><span class=c>: t</span>
-<span class=cs>#+HUGO_DRAFT</span><span class=c>: false</span>
-<span class=cs>#+DATE</span><span class=c>: [2021-11-28 Sun 19:28]</span>
-<span class=cs>#+TITLE</span><span class=c>: 标题</span>
-<span class=cs>#+HUGO_TAGS</span><span class=c>: tag1 tag2</span>
-<span class=cs>#+HUGO_CATEGORIES</span><span class=c>: category1 category2</span>
-
-Hello，World
-</code></pre></td></tr></table>
-</div>
-</div><p>3、导出org到markdown文件</p>
-<ul>
-<li>在Emacs里执行C-c C-e H h（File to Md file）导出整个org文件到markdown文件，也可以导出subtree，具体看个人喜好</li>
-</ul>
-<p>4、访问<a href=http://127.0.0.1:1313/ target=_blank rel=noopener>http://127.0.0.1:1313/</a>
-<br>
-5、正常情况就会看到博客界面啦
-<br>
-6、提交org及markdown文件到blog仓库
-<br>
-7、使用Yasnippet（推荐）
-下次新建文件就不用copy一些元数据</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-org data-lang=org><span class=line><span class=cl><span class=cs>#+OPTIONS</span><span class=c>: author:nil ^:{}</span>
+</span></span><span class=line><span class=cl><span class=c># 告诉ox-hugo将导出的markdown文件放到哪里。注意：even主题需要发布到post目录。</span>
+</span></span><span class=line><span class=cl><span class=c># see: https://ox-hugo.scripter.co/#before-you-export</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_BASE_DIR</span><span class=c>: ../../../hugo</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_SECTION</span><span class=c>: post/2021/11</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_CUSTOM_FRONT_MATTER</span><span class=c>: :toc true</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_AUTO_SET_LASTMOD</span><span class=c>: t</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_DRAFT</span><span class=c>: false</span>
+</span></span><span class=line><span class=cl><span class=cs>#+DATE</span><span class=c>: [2021-11-28 Sun 19:28]</span>
+</span></span><span class=line><span class=cl><span class=cs>#+TITLE</span><span class=c>: 标题</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_TAGS</span><span class=c>: tag1 tag2</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_CATEGORIES</span><span class=c>: category1 category2</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Hello，World
+</span></span></code></pre></td></tr></table></div></div><p>3、导出org到markdown文件</p><ul><li>在Emacs里执行C-c C-e H h（File to Md file）导出整个org文件到markdown文件，也可以导出subtree，具体看个人喜好</li></ul><p>4、访问<a href=http://127.0.0.1:1313/ target=_blank rel=noopener>http://127.0.0.1:1313/</a><br>5、正常情况就会看到博客界面啦<br>6、提交org及markdown文件到blog仓库<br>7、使用Yasnippet（推荐）
+下次新建文件就不用copy一些元数据</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -281,30 +77,23 @@ Hello，World
 </span><span class=lnt>14
 </span><span class=lnt>15
 </span><span class=lnt>16
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback># -*- mode: snippet -*-
-# name: hugo
-# key: hugo
-# --
-#+OPTIONS: author:nil ^:{}
-#+HUGO_BASE_DIR: ../../../hugo
-#+HUGO_SECTION: post/`(format-time-string &#34;%Y/%m&#34;)`
-#+HUGO_CUSTOM_FRONT_MATTER: :toc true
-#+HUGO_AUTO_SET_LASTMOD: t
-#+HUGO_DRAFT: false
-#+DATE: `(format-time-string &#34;[%Y-%m-%d %a %H:%M]&#34;)`
-#+TITLE: $1
-#+HUGO_TAGS: $2
-#+HUGO_CATEGORIES: $3
-
-$0
-</code></pre></td></tr></table>
-</div>
-</div><h3 id=目录结构>目录结构</h3>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-org data-lang=org><span class=line><span class=cl><span class=c># -*- mode: snippet -*-</span>
+</span></span><span class=line><span class=cl><span class=c># name: hugo</span>
+</span></span><span class=line><span class=cl><span class=c># key: hugo</span>
+</span></span><span class=line><span class=cl><span class=c># --</span>
+</span></span><span class=line><span class=cl><span class=cs>#+OPTIONS</span><span class=c>: author:nil ^:{}</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_BASE_DIR</span><span class=c>: ../../../hugo</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_SECTION</span><span class=c>: post/`(format-time-string &#34;%Y/%m&#34;)`</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_CUSTOM_FRONT_MATTER</span><span class=c>: :toc true</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_AUTO_SET_LASTMOD</span><span class=c>: t</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_DRAFT</span><span class=c>: false</span>
+</span></span><span class=line><span class=cl><span class=cs>#+DATE</span><span class=c>: `(format-time-string &#34;[%Y-%m-%d %a %H:%M]&#34;)`</span>
+</span></span><span class=line><span class=cl><span class=cs>#+TITLE</span><span class=c>: $1</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_TAGS</span><span class=c>: $2</span>
+</span></span><span class=line><span class=cl><span class=cs>#+HUGO_CATEGORIES</span><span class=c>: $3</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$0
+</span></span></code></pre></td></tr></table></div></div><h3 id=目录结构>目录结构</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -323,35 +112,26 @@ $0
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-html data-lang=html>  <span class=c>&lt;!-- blog仓库目录结构如下 --&gt;</span>
-  <span class=c>&lt;!-- tree -a -d -L 3 -I .git --&gt;</span>
-.
-├── .github
-│   └── workflows
-├── hugo
-│   ├── archetypes
-│   ├── content
-│   │   └── post
-│   ├── data
-│   ├── layouts
-│   │   └── _internal
-│   ├── static
-│   └── themes
-│       └── even
-├── org
-│   └── 2021
-│       └── 11
-└── scripts
-</code></pre></td></tr></table>
-</div>
-</div><h2 id=部署篇>部署篇</h2>
-<h3 id=配置github-action>配置Github Action</h3>
-<p>在blog仓库下新增.github/workflows/main.yml文件，内容如下：</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl>  <span class=c>&lt;!-- blog仓库目录结构如下 --&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=c>&lt;!-- tree -a -d -L 3 -I .git --&gt;</span>
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── .github
+</span></span><span class=line><span class=cl>│   └── workflows
+</span></span><span class=line><span class=cl>├── hugo
+</span></span><span class=line><span class=cl>│   ├── archetypes
+</span></span><span class=line><span class=cl>│   ├── content
+</span></span><span class=line><span class=cl>│   │   └── post
+</span></span><span class=line><span class=cl>│   ├── data
+</span></span><span class=line><span class=cl>│   ├── layouts
+</span></span><span class=line><span class=cl>│   │   └── _internal
+</span></span><span class=line><span class=cl>│   ├── static
+</span></span><span class=line><span class=cl>│   └── themes
+</span></span><span class=line><span class=cl>│       └── even
+</span></span><span class=line><span class=cl>├── org
+</span></span><span class=line><span class=cl>│   └── 2021
+</span></span><span class=line><span class=cl>│       └── 11
+</span></span><span class=line><span class=cl>└── scripts
+</span></span></code></pre></td></tr></table></div></div><h2 id=部署篇>部署篇</h2><h3 id=配置github-action>配置Github Action</h3><p>在blog仓库下新增.github/workflows/main.yml文件，内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -397,187 +177,82 @@ $0
 </span><span class=lnt>44
 </span><span class=lnt>45
 </span><span class=lnt>46
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>GitHub Pages</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w>
-</span><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span>- <span class=l>main </span><span class=w> </span><span class=c># Set a branch to deploy</span><span class=w>
-</span><span class=w>  </span><span class=nt>pull_request</span><span class=p>:</span><span class=w>
-</span><span class=w>
-</span><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span><span class=w>  </span><span class=nt>deploy</span><span class=p>:</span><span class=w>
-</span><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-20.04</span><span class=w>
-</span><span class=w>    </span><span class=nt>concurrency</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span><span class=nt>group</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.workflow }}-${{ github.ref }}</span><span class=w>
-</span><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span><span class=w>      </span><span class=c># 修改时区</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Set Timezone</span><span class=w>
-</span><span class=w>	</span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>sudo timedatectl set-timezone &#39;Asia/Shanghai&#39;</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v2</span><span class=w>
-</span><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span><span class=w>	  </span><span class=nt>submodules</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>  </span><span class=c># Fetch Hugo themes (true OR recursive)</span><span class=w>
-</span><span class=w>	  </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>    </span><span class=c># Fetch all history for .GitInfo and .Lastmod</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
-</span><span class=w>	</span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2</span><span class=w>
-</span><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span><span class=w>	  </span><span class=c># 建议和本地用的版本保持一致，从而获得一致的体验</span><span class=w>
-</span><span class=w>	  </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0.89.4&#39;</span><span class=w>
-</span><span class=w>	  </span><span class=c># extended: true</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build</span><span class=w>
-</span><span class=w>	</span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>|</span><span class=w>
-</span><span class=w>	  </span><span class=l>hugo --source hugo --minify --buildFuture --buildExpired</span><span class=w>
-</span><span class=w>
-</span><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy</span><span class=w>
-</span><span class=w>	</span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-gh-pages@v3</span><span class=w>
-</span><span class=w>	</span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.ref == &#39;refs/heads/main&#39; }}</span><span class=w>
-</span><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span><span class=w>	  </span><span class=c># github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}</span><span class=w>
-</span><span class=w>	  </span><span class=c># publish_branch: gh-pages</span><span class=w>
-</span><span class=w>	  </span><span class=c># publish_dir: hugo/public</span><span class=w>
-</span><span class=w>	  </span><span class=nt>deploy_key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.DEPLOY_KEY }}</span><span class=w>
-</span><span class=w>	  </span><span class=nt>external_repository</span><span class=p>:</span><span class=w> </span><span class=l>superbear/superbear.github.io</span><span class=w>
-</span><span class=w>	  </span><span class=c># 默认是master目录，github上可修改</span><span class=w>
-</span><span class=w>	  </span><span class=nt>publish_branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
-</span><span class=w>	  </span><span class=nt>publish_dir</span><span class=p>:</span><span class=w> </span><span class=l>hugo/public</span><span class=w>
-</span></code></pre></td></tr></table>
-</div>
-</div><h3 id=配置deploy-key>配置DEPLOY_KEY</h3>
-<p>生成<a href=https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys target=_blank rel=noopener>github deploy-keys</a>
-<br>
-1、将公钥添加至{username}.github.io仓的Deploy keys（Settings -> Deploy keys）中；
-<br>
-2、将私钥添加至blog仓库的secrets（Settings -> Secrets）中；
-<br>
-3、将本地blog目录的改动push到远程blog仓库master分支；
-<br>
-4、正常情况下，一段时间之后，可以在{username}.github.io的master分支下看到hugo生成的静态文件；
-<br>
-5、没有的话，可以根据blog仓库的Github Actions日志排查下。</p>
-<h2 id=遇到的问题>遇到的问题</h2>
-<p>1、部署完成却没有生成文件，就只有一个.nojekyll文件</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>GitHub Pages</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>main </span><span class=w> </span><span class=c># Set a branch to deploy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>pull_request</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>deploy</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-20.04</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>concurrency</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>group</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.workflow }}-${{ github.ref }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 修改时区</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Set Timezone</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>sudo timedatectl set-timezone &#39;Asia/Shanghai&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>submodules</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>  </span><span class=c># Fetch Hugo themes (true OR recursive)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>    </span><span class=c># Fetch all history for .GitInfo and .Lastmod</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># 建议和本地用的版本保持一致，从而获得一致的体验</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0.89.4&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># extended: true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>|</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=l>hugo --source hugo --minify --buildFuture --buildExpired</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-gh-pages@v3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.ref == &#39;refs/heads/main&#39; }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># publish_branch: gh-pages</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># publish_dir: hugo/public</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>deploy_key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.DEPLOY_KEY }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>external_repository</span><span class=p>:</span><span class=w> </span><span class=l>superbear/superbear.github.io</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># 默认是master目录，github上可修改</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>publish_branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>publish_dir</span><span class=p>:</span><span class=w> </span><span class=l>hugo/public</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=配置deploy-key>配置DEPLOY_KEY</h3><p>生成<a href=https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys target=_blank rel=noopener>github deploy-keys</a><br>1、将公钥添加至{username}.github.io仓的Deploy keys（Settings -> Deploy keys）中；<br>2、将私钥添加至blog仓库的secrets（Settings -> Secrets）中；<br>3、将本地blog目录的改动push到远程blog仓库master分支；<br>4、正常情况下，一段时间之后，可以在{username}.github.io的master分支下看到hugo生成的静态文件；<br>5、没有的话，可以根据blog仓库的Github Actions日志排查下。</p><h2 id=遇到的问题>遇到的问题</h2><p>1、部署完成却没有生成文件，就只有一个.nojekyll文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=c>&lt;!-- actions log --&gt;</span>
-cp: no such file or directory: /home/runner/work/blog/hugo/public/*
-</code></pre></td></tr></table>
-</div>
-</div><p>排查思路：排查Github Actions日志，以及写一些shell命令查看路径相关信息</p>
-<p>2、Hugo生成静态文件报错，报错信息如下：</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback>- unmarshal failed: Near line 4 (last key parsed &#39;tags&#39;): Array contains values of type &#39;Integer&#39; and &#39;String&#39;, but arrays must be homogeneous.
-</code></pre></td></tr></table>
-</div>
-</div><p>原因：tags的类型不一致，标签混用了数字和字符串
-<br>
-解决方案：去掉数字类型的标签或升级至最新版本的hugo</p>
-<h2 id=参考文档>参考文档</h2>
-<p><a href=https://www.xianmin.org/post/ox-hugo/ target=_blank rel=noopener>博客写作流程之工具篇： emacs, orgmode, hugo & ox-hugo</a>
-</p>
-<p><a href=https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0github-pages/ target=_blank rel=noopener>Hugo使用Github Action自动部署博客到Github Pages</a>
-</p>
-<p><a href=https://github.com/peaceiris/actions-gh-pages/blob/main/README.md#%EF%B8%8F-deploy-to-external-repository-external_repository target=_blank rel=noopener>actions-gh-pages</a>
-</p>
-<p><a href=https://docs.github.com/cn/actions/learn-github-actions/events-that-trigger-workflows target=_blank rel=noopener>GitHub Actions</a>
-</p>
-<section class=footnotes role=doc-endnotes>
-<hr>
-<ol>
-<li id=fn:1 role=doc-endnote>
-<p><a href=https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ target=_blank rel=noopener>https://michaeljherold.com/articles/using-ox-hugo-without-duplication/</a>
-&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-</div>
-<div class=post-copyright>
-<p class=copyright-item>
-<span class=item-title>文章作者</span>
-<span class=item-content>superbear</span>
-</p>
-<p class=copyright-item>
-<span class=item-title>上次更新</span>
-<span class=item-content>
-2021-12-05
-</span>
-</p>
-<p class=copyright-item>
-<span class=item-title>许可协议</span>
-<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span>
-</p>
-</div>
-<footer class=post-footer>
-<div class=post-tags>
-<a href=/tags/emacs/>emacs</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=c>&lt;!-- actions log --&gt;</span>
+</span></span><span class=line><span class=cl>cp: no such file or directory: /home/runner/work/blog/hugo/public/*
+</span></span></code></pre></td></tr></table></div></div><p>排查思路：排查Github Actions日志，以及写一些shell命令查看路径相关信息</p><p>2、Hugo生成静态文件报错，报错信息如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>- unmarshal failed: Near line 4 (last key parsed &#39;tags&#39;): Array contains values of type &#39;Integer&#39; and &#39;String&#39;, but arrays must be homogeneous.
+</span></span></code></pre></td></tr></table></div></div><p>原因：tags的类型不一致，标签混用了数字和字符串<br>解决方案：去掉数字类型的标签或升级至最新版本的hugo</p><h2 id=参考文档>参考文档</h2><p><a href=https://www.xianmin.org/post/ox-hugo/ target=_blank rel=noopener>博客写作流程之工具篇： emacs, orgmode, hugo & ox-hugo</a></p><p><a href=https://tomial.github.io/posts/hugo%E4%BD%BF%E7%94%A8github-action%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2%E5%8D%9A%E5%AE%A2%E5%88%B0github-pages/ target=_blank rel=noopener>Hugo使用Github Action自动部署博客到Github Pages</a></p><p><a href=https://github.com/peaceiris/actions-gh-pages/blob/main/README.md#%EF%B8%8F-deploy-to-external-repository-external_repository target=_blank rel=noopener>actions-gh-pages</a></p><p><a href=https://docs.github.com/cn/actions/learn-github-actions/events-that-trigger-workflows target=_blank rel=noopener>GitHub Actions</a></p><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://michaeljherold.com/articles/using-ox-hugo-without-duplication/ target=_blank rel=noopener>https://michaeljherold.com/articles/using-ox-hugo-without-duplication/</a>
+&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>superbear</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2021-12-05</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/emacs/>emacs</a>
 <a href=/tags/org-mode/>org-mode</a>
 <a href=/tags/hugo/>hugo</a>
 <a href=/tags/ox-hugo/>ox-hugo</a>
 <a href=/tags/github-actions/>github-actions</a>
-<a href=/tags/2021/>2021</a>
-</div>
-<nav class=post-nav>
-<a class=prev href=/post/2021/12/batch-export-org-files-to-markdown-with-emacs-script-and-ox-hugo/>
-<i class="iconfont icon-left"></i>
+<a href=/tags/2021/>2021</a></div><nav class=post-nav><a class=prev href=/post/2021/12/batch-export-org-files-to-markdown-with-emacs-script-and-ox-hugo/><i class="iconfont icon-left"></i>
 <span class="prev-text nav-default">使用Emacs Script自动将org文件导出为Markdown</span>
-<span class="prev-text nav-mobile">上一篇</span>
-</a>
-</nav>
-</footer>
-</article>
-</div>
-<div id=gitalk-container></div>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
-<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
-<script type=text/javascript>var gitalk=new Gitalk({id:'2021-11-28 14:55:00 \u002b0800 CST',title:'用Org Mode \u002b Hugo写博客，并通过Github Action自动部署到Github Pages',clientID:'7b8393847a5086c5addb',clientSecret:'0d416dcd9a365afe6bfafc63cbbda49e8fe0d83d',repo:'superbear.github.io',owner:'superbear',admin:['superbear'],body:decodeURI(location.href)});gitalk.render('gitalk-container')</script>
-<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript>
-</div>
-</main>
-<footer id=footer class=footer>
-<div class=social-links>
-<a href="javascript:alert%28atob%28%27c3VwZXJiZWFyMjAxM0BwbS5tZQ==%27%29%29" class="iconfont icon-email" title=email></a>
+<span class="prev-text nav-mobile">上一篇</span></a></nav></footer></article></div><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
+<script type=text/javascript>var gitalk=new Gitalk({id:"2021-11-28 14:55:00 \u002b0800 CST",title:"用Org Mode \u002b Hugo写博客，并通过Github Action自动部署到Github Pages",clientID:"7b8393847a5086c5addb",clientSecret:"0d416dcd9a365afe6bfafc63cbbda49e8fe0d83d",repo:"superbear.github.io",owner:"superbear",admin:["superbear"],body:decodeURI(location.href)});gitalk.render("gitalk-container")</script><noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href="javascript:alert%28atob%28%27c3VwZXJiZWFyMjAxM0BwbS5tZQ==%27%29%29" class="iconfont icon-email" title=email></a>
 <a href=https://github.com/superbear class="iconfont icon-github" title=github></a>
 <a href=https://keybase.io/superbear class="iconfont icon-pocket" title=pocket></a>
-<a href=https://superbear.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
-</div>
-<div class=copyright>
-<span class=power-by>
-由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
-</span>
+<a href=https://superbear.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
 <span class=division>|</span>
-<span class=theme-info>
-主题 -
-<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
-</span>
-<span class=copyright-year>
-&copy;
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
 2016 -
-2022<span class=heart><i class="iconfont icon-heart"></i></span><span>superbear</span>
-</span>
-</div>
-</footer>
-<div class=back-to-top id=back-to-top>
-<i class="iconfont icon-up"></i>
-</div>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>superbear</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DX9VPLPS9"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-2DX9VPLPS9')</script>
-<script id=baidu_analytics>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?ec80cf7a02434b875035c1250cf198e5",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script>
-</body>
-</html>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-2DX9VPLPS9")</script><script id=baidu_analytics>var _hmt=_hmt||[];(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.async=!0,e.src="https://hm.baidu.com/hm.js?ec80cf7a02434b875035c1250cf198e5",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>

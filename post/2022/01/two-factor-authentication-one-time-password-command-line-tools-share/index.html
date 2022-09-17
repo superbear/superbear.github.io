@@ -1,179 +1,32 @@
-<!doctype html><html lang=zh-cn>
-<head>
-<meta charset=utf-8>
-<meta http-equiv=x-ua-compatible content="IE=edge,chrome=1">
-<title>两步验证（2FA）Emacs插件及命令行版工具 - superbear's blog</title>
-<meta name=renderer content="webkit">
-<meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1">
-<meta http-equiv=cache-control content="no-transform">
-<meta http-equiv=cache-control content="no-siteapp">
-<meta name=theme-color content="#f8f5ec">
-<meta name=msapplication-navbutton-color content="#f8f5ec">
-<meta name=apple-mobile-web-app-capable content="yes">
-<meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec">
-<meta name=author content="superbear"><meta name=description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><meta name=keywords content="superbear,Golang,Go,PHP,Emacs">
-<meta name=baidu-site-verification content="code-jiYYRFXqhi">
-<meta name=google-site-verification content="4gfOaQRBgyyUQH-KbXpHZnAB6Ilcn1sxavDAkvN7W7Y">
-<meta name=generator content="Hugo 0.90.0 with theme even">
-<link rel=canonical href=https://superbear.github.io/post/2022/01/two-factor-authentication-one-time-password-command-line-tools-share/>
-<link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png>
-<link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png>
-<link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png>
-<link rel=manifest href=/manifest.json>
-<link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5>
-<link href=/sass/main.min.9d4e32632e588e67009bca24dcd91c7ff5a74cb7b0017dfc1d97d1543bf16774.css rel=stylesheet>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous>
-<link rel=stylesheet href=/css/style.css>
-<meta property="og:title" content="两步验证（2FA）Emacs插件及命令行版工具">
-<meta property="og:description" content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://superbear.github.io/post/2022/01/two-factor-authentication-one-time-password-command-line-tools-share/"><meta property="article:section" content="post">
-<meta property="article:published_time" content="2022-01-09T19:18:00+08:00">
-<meta property="article:modified_time" content="2022-01-09T19:18:00+08:00">
-<meta itemprop=name content="两步验证（2FA）Emacs插件及命令行版工具">
-<meta itemprop=description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><meta itemprop=datePublished content="2022-01-09T19:18:00+08:00">
-<meta itemprop=dateModified content="2022-01-09T19:18:00+08:00">
-<meta itemprop=wordCount content="1127">
-<meta itemprop=keywords content="totp,emacs-totp,2fa,"><meta name=twitter:card content="summary">
-<meta name=twitter:title content="两步验证（2FA）Emacs插件及命令行版工具">
-<meta name=twitter:description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
-<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]-->
-</head>
-<body>
-<div id=mobile-navbar class=mobile-navbar>
-<div class=mobile-header-logo>
-<a href=/ class=logo>superbear's blog</a>
-</div>
-<div class=mobile-navbar-icon>
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>两步验证（2FA）Emacs插件及命令行版工具 - superbear's blog</title><meta name=renderer content="webkit"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=cache-control content="no-transform"><meta http-equiv=cache-control content="no-siteapp"><meta name=theme-color content="#f8f5ec"><meta name=msapplication-navbutton-color content="#f8f5ec"><meta name=apple-mobile-web-app-capable content="yes"><meta name=apple-mobile-web-app-status-bar-style content="#f8f5ec"><meta name=author content="superbear"><meta name=description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><meta name=keywords content="superbear,Golang,Go,PHP,Emacs"><meta name=baidu-site-verification content="code-jiYYRFXqhi"><meta name=google-site-verification content="4gfOaQRBgyyUQH-KbXpHZnAB6Ilcn1sxavDAkvN7W7Y"><meta name=generator content="Hugo 0.102.3 with theme even"><link rel=canonical href=https://superbear.github.io/post/2022/01/two-factor-authentication-one-time-password-command-line-tools-share/><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/manifest.json><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link href=/sass/main.min.9d51f4c53063c1c4749de6c5518204f0befc08dd7a77dc72f2ba305105c35dfa.css rel=stylesheet><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin=anonymous><link rel=stylesheet href=/css/style.css><meta property="og:title" content="两步验证（2FA）Emacs插件及命令行版工具"><meta property="og:description" content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><meta property="og:type" content="article"><meta property="og:url" content="https://superbear.github.io/post/2022/01/two-factor-authentication-one-time-password-command-line-tools-share/"><meta property="article:section" content="post"><meta property="article:published_time" content="2022-01-09T19:18:00+08:00"><meta property="article:modified_time" content="2022-01-09T19:18:00+08:00"><meta itemprop=name content="两步验证（2FA）Emacs插件及命令行版工具"><meta itemprop=description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><meta itemprop=datePublished content="2022-01-09T19:18:00+08:00"><meta itemprop=dateModified content="2022-01-09T19:18:00+08:00"><meta itemprop=wordCount content="1127"><meta itemprop=keywords content="totp,emacs-totp,2fa,"><meta name=twitter:card content="summary"><meta name=twitter:title content="两步验证（2FA）Emacs插件及命令行版工具"><meta name=twitter:description content="两步验证 两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）1，还有多因素身份认证（MFA）。 因素越"><!--[if lte IE 9]><script src=https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js></script><![endif]--><!--[if lt IE 9]><script src=https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js></script>
+<script src=https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js></script><![endif]--></head><body><div id=mobile-navbar class=mobile-navbar><div class=mobile-header-logo><a href=/ class=logo>superbear's blog</a></div><div class=mobile-navbar-icon><span></span>
 <span></span>
-<span></span>
-<span></span>
-</div>
-</div>
-<nav id=mobile-menu class="mobile-menu slideout-menu">
-<ul class=mobile-menu-list>
-<a href=/>
-<li class=mobile-menu-item>Home</li>
-</a><a href=/post/>
-<li class=mobile-menu-item>Archives</li>
-</a><a href=/tags/>
-<li class=mobile-menu-item>Tags</li>
-</a><a href=/categories/>
-<li class=mobile-menu-item>Categories</li>
-</a>
-</ul>
-</nav>
-<div class=container id=mobile-panel>
-<header id=header class=header>
-<div class=logo-wrapper>
-<a href=/ class=logo>superbear's blog</a>
-</div>
-<nav class=site-navbar>
-<ul id=menu class=menu>
-<li class=menu-item>
-<a class=menu-item-link href=/>Home</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/post/>Archives</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/tags/>Tags</a>
-</li><li class=menu-item>
-<a class=menu-item-link href=/categories/>Categories</a>
-</li>
-</ul>
-</nav>
-</header>
-<main id=main class=main>
-<div class=content-wrapper>
-<div id=content class=content>
-<article class=post>
-<header class=post-header>
-<h1 class=post-title>两步验证（2FA）Emacs插件及命令行版工具</h1>
-<div class=post-meta>
-<span class=post-time> 2022-01-09 </span>
-<div class=post-category>
-<a href=/categories/tools/> tools </a>
-</div>
-<span class=more-meta> 约 1127 字 </span>
-<span class=more-meta> 预计阅读 3 分钟 </span>
-</div>
-</header>
-<div class=post-toc id=post-toc>
-<h2 class=post-toc-title>目录</h2>
-<div class="post-toc-content always-active">
-<nav id=TableOfContents>
-<ul>
-<li>
-<ul>
-<li><a href=#两步验证>两步验证</a>
-<ul>
-<li><a href=#一次性密码算法>一次性密码算法</a></li>
-<li><a href=#密钥管理>密钥管理</a></li>
-</ul>
-</li>
-<li><a href=#totp相关软件>TOTP相关软件</a>
-<ul>
-<li><a href=#emacs-totp>Emacs-TOTP</a></li>
-<li><a href=#totp命令行>TOTP命令行</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-<div class=post-content>
-<h2 id=两步验证>两步验证</h2>
-<p>两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>，还有多因素身份认证（MFA）。
+<span></span></div></div><nav id=mobile-menu class="mobile-menu slideout-menu"><ul class=mobile-menu-list><a href=/><li class=mobile-menu-item>Home</li></a><a href=/post/><li class=mobile-menu-item>Archives</li></a><a href=/tags/><li class=mobile-menu-item>Tags</li></a><a href=/categories/><li class=mobile-menu-item>Categories</li></a></ul></nav><div class=container id=mobile-panel><header id=header class=header><div class=logo-wrapper><a href=/ class=logo>superbear's blog</a></div><nav class=site-navbar><ul id=menu class=menu><li class=menu-item><a class=menu-item-link href=/>Home</a></li><li class=menu-item><a class=menu-item-link href=/post/>Archives</a></li><li class=menu-item><a class=menu-item-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-item-link href=/categories/>Categories</a></li></ul></nav></header><main id=main class=main><div class=content-wrapper><div id=content class=content><article class=post><header class=post-header><h1 class=post-title>两步验证（2FA）Emacs插件及命令行版工具</h1><div class=post-meta><span class=post-time>2022-01-09</span><div class=post-category><a href=/categories/tools/>tools</a></div><span class=more-meta>约 1127 字</span>
+<span class=more-meta>预计阅读 3 分钟</span></div></header><div class=post-toc id=post-toc><h2 class=post-toc-title>目录</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><ul><li><a href=#两步验证>两步验证</a><ul><li><a href=#一次性密码算法>一次性密码算法</a></li><li><a href=#密钥管理>密钥管理</a></li></ul></li><li><a href=#totp相关软件>TOTP相关软件</a><ul><li><a href=#emacs-totp>Emacs-TOTP</a></li><li><a href=#totp命令行>TOTP命令行</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-content><h2 id=两步验证>两步验证</h2><p>两步验证（也称双因素身份验证，Two-factor authentication，简称2FA）<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>，还有多因素身份认证（MFA）。
 因素越多，证明力就越强，身份就越可靠。<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>
-比较常见的实现方式是静态密码+一次性密码（One-time password，简称OTP）<sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>。</p>
-<p>比如以前过这种的这种硬Token。
+比较常见的实现方式是静态密码+一次性密码（One-time password，简称OTP）<sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>。</p><p>比如以前过这种的这种硬Token。
 <img src=/images/SecureID_token.jpeg alt>
-(from Wikipedia)</p>
-<p>当然还有软Token（如Google Authenticator，挺简洁的软件，最新版本已经支持备份了）。
+(from Wikipedia)</p><p>当然还有软Token（如Google Authenticator，挺简洁的软件，最新版本已经支持备份了）。
 <img src=/images/Google_Authenticator.png alt>
-(from Google Play)</p>
-<p>上面的硬Token无法联网，软Token断网也能用。不需要和服务端通信？</p>
-<h3 id=一次性密码算法>一次性密码算法</h3>
-<p>有两种算法：<a href=https://zh.wikipedia.org/wiki/%E5%9F%BA%E4%BA%8E%E6%95%A3%E5%88%97%E6%B6%88%E6%81%AF%E9%AA%8C%E8%AF%81%E7%A0%81%E7%9A%84%E4%B8%80%E6%AC%A1%E6%80%A7%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95 target=_blank rel=noopener>基于散列消息验证码的一次性密码（HTOP）</a>
+(from Google Play)</p><p>上面的硬Token无法联网，软Token断网也能用。不需要和服务端通信？</p><h3 id=一次性密码算法>一次性密码算法</h3><p>有两种算法：<a href=https://zh.wikipedia.org/wiki/%E5%9F%BA%E4%BA%8E%E6%95%A3%E5%88%97%E6%B6%88%E6%81%AF%E9%AA%8C%E8%AF%81%E7%A0%81%E7%9A%84%E4%B8%80%E6%AC%A1%E6%80%A7%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95 target=_blank rel=noopener>基于散列消息验证码的一次性密码（HTOP）</a>
 、<a href=https://zh.wikipedia.org/wiki/%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E4%B8%80%E6%AC%A1%E6%80%A7%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95 target=_blank rel=noopener>基于时间的一次性密码（TOTP）</a>
 。
 服务端和客户端（Token）基于 <strong>相同的算法</strong> 、 <strong>相同的密钥</strong> 、 <strong>计数器</strong> ，独立计算出一串密码。理论上两者的计算结果会是一样的。
-其中计数器的值会变化，所以结果可以变化。</p>
-<p>TOTP将计数器换成了时间戳，TOTP算是HTOP的一种实现。
+其中计数器的值会变化，所以结果可以变化。</p><p>TOTP将计数器换成了时间戳，TOTP算是HTOP的一种实现。
 时间戳可能由于网络延迟或时钟不同步等原因，两边的时间不一样，因此结果可能不一致。
-为规避这个问题，服务端一般会有容错策略，会接受提前或滞后一段时间的密码。</p>
-<h3 id=密钥管理>密钥管理</h3>
-<p>一次性密码的密钥和静态密码同样重要。
+为规避这个问题，服务端一般会有容错策略，会接受提前或滞后一段时间的密码。</p><h3 id=密钥管理>密钥管理</h3><p>一次性密码的密钥和静态密码同样重要。
 开启两步验证的时候，服务端一般会提供一个二维码（或链接）、备份验证码。
 建议将链接以及备份验证码加密（建议使用<a href=https://wiki.archlinux.org/title/GnuPG_%28%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%29 target=_blank rel=noopener>GnuPG</a>
 ）备份，然后放到一个安全的地方。
-不慎遗失的话，账号很可能找不回来了。</p>
-<h2 id=totp相关软件>TOTP相关软件</h2>
-<p>简单介绍了两步验证的基础知识，下面就来介绍几款命令行版本的两步验证（TOTP版）工具。</p>
-<h3 id=emacs-totp>Emacs-TOTP</h3>
-<p><a href=https://github.com/juergenhoetzel/emacs-totp target=_blank rel=noopener>emacs-totp</a>
+不慎遗失的话，账号很可能找不回来了。</p><h2 id=totp相关软件>TOTP相关软件</h2><p>简单介绍了两步验证的基础知识，下面就来介绍几款命令行版本的两步验证（TOTP版）工具。</p><h3 id=emacs-totp>Emacs-TOTP</h3><p><a href=https://github.com/juergenhoetzel/emacs-totp target=_blank rel=noopener>emacs-totp</a>
 （Emacs 27.1+）
 <img src=/images/emacs-totp-widget.gif alt>
-(from Github)</p>
-<p>配置方法：大部分OTP的密钥是<a href=https://datatracker.ietf.org/doc/html/rfc4648#section-6 target=_blank rel=noopener>Base32 RFC4648</a>
+(from Github)</p><p>配置方法：大部分OTP的密钥是<a href=https://datatracker.ietf.org/doc/html/rfc4648#section-6 target=_blank rel=noopener>Base32 RFC4648</a>
 编码的，Emacs不支持，需要转换成Hex格式的。
-部分密钥格式不是很标准，结尾缺少=（Padding），需要补全后再转换。</p>
-<p>在线转换：<a href=https://cryptii.com/pipes/base32-to-hex target=_blank rel=noopener>base32-to-hex</a>
-，会自动补全结尾的Padding，挺方便。</p>
-<p>命令行转换</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-shell data-lang=shell>base32 -d <span class=o>&lt;&lt;&lt;</span>OV45GRTQARXOTU72TZLCBLUJDE2FYDSJ <span class=p>|</span> xxd -g0 -p
-</code></pre></td></tr></table>
-</div>
-</div><p>Python版本</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt> 1
+部分密钥格式不是很标准，结尾缺少=（Padding），需要补全后再转换。</p><p>在线转换：<a href=https://cryptii.com/pipes/base32-to-hex target=_blank rel=noopener>base32-to-hex</a>
+，会自动补全结尾的Padding，挺方便。</p><p>命令行转换</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>base32 -d <span class=o>&lt;&lt;&lt;</span>OV45GRTQARXOTU72TZLCBLUJDE2FYDSJ <span class=p>|</span> xxd -g0 -p
+</span></span></code></pre></td></tr></table></div></div><p>Python版本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -205,159 +58,74 @@
 </span><span class=lnt>30
 </span><span class=lnt>31
 </span><span class=lnt>32
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=ch>#!/bin/env python</span>
-<span class=c1># -*- coding:utf-8 -*-</span>
-<span class=kn>import</span> <span class=nn>sys</span>
-<span class=kn>import</span> <span class=nn>base64</span>
-
-<span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>:</span>
-    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Please input base32 format key&#34;</span><span class=p>)</span>
-    <span class=n>sys</span><span class=o>.</span><span class=n>exit</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-
-<span class=n>key</span> <span class=o>=</span> <span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
-<span class=n>length</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
-<span class=k>if</span> <span class=n>length</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
-    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Please input base32 format key&#34;</span><span class=p>)</span>
-    <span class=n>sys</span><span class=o>.</span><span class=n>exit</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
-
-<span class=c1># https://stackoverflow.com/questions/52012206/why-do-i-get-an-incorrect-padding-error-while-trying-to-decode-my-base32-strin</span>
-<span class=c1># https://datatracker.ietf.org/doc/html/rfc4648#section-6</span>
-<span class=n>mod</span> <span class=o>=</span> <span class=n>length</span> <span class=o>%</span> <span class=mi>8</span>
-<span class=k>if</span> <span class=n>mod</span> <span class=o>==</span> <span class=mi>1</span><span class=p>:</span>
-    <span class=n>key</span> <span class=o>=</span> <span class=n>key</span> <span class=o>+</span> <span class=s2>&#34;======&#34;</span>
-<span class=k>if</span> <span class=n>mod</span> <span class=o>==</span> <span class=mi>2</span><span class=p>:</span>
-    <span class=n>key</span> <span class=o>=</span> <span class=n>key</span> <span class=o>+</span> <span class=s2>&#34;====&#34;</span>
-<span class=k>if</span> <span class=n>mod</span> <span class=o>==</span> <span class=mi>3</span><span class=p>:</span>
-    <span class=n>key</span> <span class=o>=</span> <span class=n>key</span> <span class=o>+</span> <span class=s2>&#34;===&#34;</span>
-<span class=k>if</span> <span class=n>mod</span> <span class=o>==</span> <span class=mi>4</span><span class=p>:</span>
-    <span class=n>key</span> <span class=o>=</span> <span class=n>key</span> <span class=o>+</span> <span class=s2>&#34;=&#34;</span>
-
-<span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Base32 Format key: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>key</span><span class=p>))</span>
-<span class=k>try</span><span class=p>:</span>
-    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Hex Format key: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>base64</span><span class=o>.</span><span class=n>b32decode</span><span class=p>(</span><span class=n>key</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>)))</span>
-<span class=k>except</span> <span class=ne>TypeError</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
-    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Decode failed, error: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>)))</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>OTP密钥加密保存</p>
-<div class=highlight><div class=chroma>
-<table class=lntable><tr><td class=lntd>
-<pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=ch>#!/bin/env python</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding:utf-8 -*-</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>sys</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>base64</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>)</span> <span class=o>&lt;</span> <span class=mi>2</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Please input base32 format key&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>sys</span><span class=o>.</span><span class=n>exit</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>key</span> <span class=o>=</span> <span class=n>sys</span><span class=o>.</span><span class=n>argv</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>.</span><span class=n>strip</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=n>length</span> <span class=o>=</span> <span class=nb>len</span><span class=p>(</span><span class=n>key</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>length</span> <span class=o>==</span> <span class=mi>0</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Please input base32 format key&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>sys</span><span class=o>.</span><span class=n>exit</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># https://stackoverflow.com/questions/52012206/why-do-i-get-an-incorrect-padding-error-while-trying-to-decode-my-base32-strin</span>
+</span></span><span class=line><span class=cl><span class=c1># https://datatracker.ietf.org/doc/html/rfc4648#section-6</span>
+</span></span><span class=line><span class=cl><span class=n>mod</span> <span class=o>=</span> <span class=n>length</span> <span class=o>%</span> <span class=mi>8</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>mod</span> <span class=o>==</span> <span class=mi>1</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>key</span> <span class=o>=</span> <span class=n>key</span> <span class=o>+</span> <span class=s2>&#34;======&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>mod</span> <span class=o>==</span> <span class=mi>2</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>key</span> <span class=o>=</span> <span class=n>key</span> <span class=o>+</span> <span class=s2>&#34;====&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>mod</span> <span class=o>==</span> <span class=mi>3</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>key</span> <span class=o>=</span> <span class=n>key</span> <span class=o>+</span> <span class=s2>&#34;===&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>mod</span> <span class=o>==</span> <span class=mi>4</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>key</span> <span class=o>=</span> <span class=n>key</span> <span class=o>+</span> <span class=s2>&#34;=&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Base32 Format key: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>key</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Hex Format key: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>base64</span><span class=o>.</span><span class=n>b32decode</span><span class=p>(</span><span class=n>key</span><span class=p>)</span><span class=o>.</span><span class=n>encode</span><span class=p>(</span><span class=s1>&#39;hex&#39;</span><span class=p>)))</span>
+</span></span><span class=line><span class=cl><span class=k>except</span> <span class=ne>TypeError</span> <span class=k>as</span> <span class=n>e</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Decode failed, error: </span><span class=si>{}</span><span class=s2>&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=nb>str</span><span class=p>(</span><span class=n>e</span><span class=p>)))</span>
+</span></span></code></pre></td></tr></table></div></div><p>OTP密钥加密保存</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td>
-<td class=lntd>
-<pre tabindex=0 class=chroma><code class=language-elisp data-lang=elisp><span class=c1>;;; 配置文件中加入以下语句，也可通过M-x customize-variable配置</span>
-<span class=p>(</span><span class=nb>setq</span> <span class=nv>auth-source-gpg-encrypt-to</span> <span class=o>&#39;</span><span class=p>(</span><span class=s>&#34;your gpg key&#34;</span><span class=p>))</span>
-<span class=p>(</span><span class=nb>setq</span> <span class=nv>auth-sources</span> <span class=o>&#39;</span><span class=p>(</span><span class=s>&#34;~/.authinfo.gpg&#34;</span> <span class=s>&#34;~/.authinfo&#34;</span> <span class=s>&#34;~/.netrc&#34;</span><span class=p>))</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id=totp命令行>TOTP命令行</h3>
-<ul>
-<li><a href=https://github.com/tadfisher/pass-otp target=_blank rel=noopener>pass-otp</a>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-lisp data-lang=lisp><span class=line><span class=cl><span class=c1>;;; 配置文件中加入以下语句，也可通过M-x customize-variable配置</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=k>setq</span> <span class=nv>auth-source-gpg-encrypt-to</span> <span class=o>&#39;</span><span class=p>(</span><span class=s>&#34;your gpg key&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=p>(</span><span class=k>setq</span> <span class=nv>auth-sources</span> <span class=o>&#39;</span><span class=p>(</span><span class=s>&#34;~/.authinfo.gpg&#34;</span> <span class=s>&#34;~/.authinfo&#34;</span> <span class=s>&#34;~/.netrc&#34;</span><span class=p>))</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=totp命令行>TOTP命令行</h3><ul><li><a href=https://github.com/tadfisher/pass-otp target=_blank rel=noopener>pass-otp</a>
 ，一款用来管理OTP Token的<a href=https://wiki.archlinux.org/title/Pass target=_blank rel=noopener>pass</a>
-软件扩展。其中，pass是一款简单的命令行版密码管理器，使用GPG加密密码文件。</li>
-<li><a href=https://github.com/arcanericky/totp target=_blank rel=noopener>totp</a>
+软件扩展。其中，pass是一款简单的命令行版密码管理器，使用GPG加密密码文件。</li><li><a href=https://github.com/arcanericky/totp target=_blank rel=noopener>totp</a>
 （Go版本），用法见README。该作者还写了个C语言版本的<a href=https://github.com/arcanericky/ga-cmd target=_blank rel=noopener>ga-cmd</a>
-。</li>
-</ul>
-<section class=footnotes role=doc-endnotes>
-<hr>
-<ol>
-<li id=fn:1 role=doc-endnote>
-<p><a href=https://zh.wikipedia.org/zh-cn/%E5%A4%9A%E9%87%8D%E8%A6%81%E7%B4%A0%E9%A9%97%E8%AD%89 target=_blank rel=noopener>双重认证</a>
-&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
-</li>
-<li id=fn:2 role=doc-endnote>
-<p><a href=http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html target=_blank rel=noopener>双因素认证（2FA）教程</a>
-&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
-</li>
-<li id=fn:3 role=doc-endnote>
-<p><a href=https://zh.wikipedia.org/wiki/%E4%B8%80%E6%AC%A1%E6%80%A7%E5%AF%86%E7%A2%BC target=_blank rel=noopener>一次性密码</a>
-&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p>
-</li>
-</ol>
-</section>
-</div>
-<div class=post-copyright>
-<p class=copyright-item>
-<span class=item-title>文章作者</span>
-<span class=item-content>superbear</span>
-</p>
-<p class=copyright-item>
-<span class=item-title>上次更新</span>
-<span class=item-content>
-2022-01-09
-</span>
-</p>
-<p class=copyright-item>
-<span class=item-title>许可协议</span>
-<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span>
-</p>
-</div>
-<footer class=post-footer>
-<div class=post-tags>
-<a href=/tags/totp/>totp</a>
+。</li></ul><div class=footnotes role=doc-endnotes><hr><ol><li id=fn:1><p><a href=https://zh.wikipedia.org/zh-cn/%E5%A4%9A%E9%87%8D%E8%A6%81%E7%B4%A0%E9%A9%97%E8%AD%89 target=_blank rel=noopener>双重认证</a>
+&#160;<a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:2><p><a href=http://www.ruanyifeng.com/blog/2017/11/2fa-tutorial.html target=_blank rel=noopener>双因素认证（2FA）教程</a>
+&#160;<a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3><p><a href=https://zh.wikipedia.org/wiki/%E4%B8%80%E6%AC%A1%E6%80%A7%E5%AF%86%E7%A2%BC target=_blank rel=noopener>一次性密码</a>
+&#160;<a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></div></div><div class=post-copyright><p class=copyright-item><span class=item-title>文章作者</span>
+<span class=item-content>superbear</span></p><p class=copyright-item><span class=item-title>上次更新</span>
+<span class=item-content>2022-01-09</span></p><p class=copyright-item><span class=item-title>许可协议</span>
+<span class=item-content><a rel="license noopener" href=https://creativecommons.org/licenses/by-nc-nd/4.0/ target=_blank>CC BY-NC-ND 4.0</a></span></p></div><footer class=post-footer><div class=post-tags><a href=/tags/totp/>totp</a>
 <a href=/tags/emacs-totp/>emacs-totp</a>
-<a href=/tags/2fa/>2fa</a>
-</div>
-<nav class=post-nav>
-<a class=prev href=/post/2022/02/hive-read-write-elasticsearch-data-integration/>
-<i class="iconfont icon-left"></i>
+<a href=/tags/2fa/>2fa</a></div><nav class=post-nav><a class=prev href=/post/2022/02/hive-read-write-elasticsearch-data-integration/><i class="iconfont icon-left"></i>
 <span class="prev-text nav-default">Hive读写（集成）Elasticsearch</span>
-<span class="prev-text nav-mobile">上一篇</span>
-</a>
-<a class=next href=/post/2021/12/batch-export-org-files-to-markdown-with-emacs-script-and-ox-hugo/>
-<span class="next-text nav-default">使用Emacs Script自动将org文件导出为Markdown</span>
+<span class="prev-text nav-mobile">上一篇</span></a>
+<a class=next href=/post/2021/12/batch-export-org-files-to-markdown-with-emacs-script-and-ox-hugo/><span class="next-text nav-default">使用Emacs Script自动将org文件导出为Markdown</span>
 <span class="next-text nav-mobile">下一篇</span>
-<i class="iconfont icon-right"></i>
-</a>
-</nav>
-</footer>
-</article>
-</div>
-<div id=gitalk-container></div>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous>
-<script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
-<script type=text/javascript>var gitalk=new Gitalk({id:'2022-01-09 19:18:00 \u002b0800 CST',title:'两步验证（2FA）Emacs插件及命令行版工具',clientID:'7b8393847a5086c5addb',clientSecret:'0d416dcd9a365afe6bfafc63cbbda49e8fe0d83d',repo:'superbear.github.io',owner:'superbear',admin:['superbear'],body:decodeURI(location.href)});gitalk.render('gitalk-container')</script>
-<noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript>
-</div>
-</main>
-<footer id=footer class=footer>
-<div class=social-links>
-<a href="javascript:alert%28atob%28%27c3VwZXJiZWFyMjAxM0BwbS5tZQ==%27%29%29" class="iconfont icon-email" title=email></a>
+<i class="iconfont icon-right"></i></a></nav></footer></article></div><div id=gitalk-container></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css crossorigin=anonymous><script src=https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js crossorigin=anonymous></script>
+<script type=text/javascript>var gitalk=new Gitalk({id:"2022-01-09 19:18:00 \u002b0800 CST",title:"两步验证（2FA）Emacs插件及命令行版工具",clientID:"7b8393847a5086c5addb",clientSecret:"0d416dcd9a365afe6bfafc63cbbda49e8fe0d83d",repo:"superbear.github.io",owner:"superbear",admin:["superbear"],body:decodeURI(location.href)});gitalk.render("gitalk-container")</script><noscript>Please enable JavaScript to view the <a href=https://github.com/gitalk/gitalk>comments powered by gitalk.</a></noscript></div></main><footer id=footer class=footer><div class=social-links><a href="javascript:alert%28atob%28%27c3VwZXJiZWFyMjAxM0BwbS5tZQ==%27%29%29" class="iconfont icon-email" title=email></a>
 <a href=https://github.com/superbear class="iconfont icon-github" title=github></a>
 <a href=https://keybase.io/superbear class="iconfont icon-pocket" title=pocket></a>
-<a href=https://superbear.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a>
-</div>
-<div class=copyright>
-<span class=power-by>
-由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动
-</span>
+<a href=https://superbear.github.io/index.xml type=application/rss+xml class="iconfont icon-rss" title=rss></a></div><div class=copyright><span class=power-by>由 <a class=hexo-link href=https://gohugo.io>Hugo</a> 强力驱动</span>
 <span class=division>|</span>
-<span class=theme-info>
-主题 -
-<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a>
-</span>
-<span class=copyright-year>
-&copy;
+<span class=theme-info>主题 -
+<a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
+<span class=copyright-year>&copy;
 2016 -
-2022<span class=heart><i class="iconfont icon-heart"></i></span><span>superbear</span>
-</span>
-</div>
-</footer>
-<div class=back-to-top id=back-to-top>
-<i class="iconfont icon-up"></i>
-</div>
-</div>
-<script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+2022<span class=heart><i class="iconfont icon-heart"></i></span><span>superbear</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
-<script type=text/javascript src=/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js></script>
+<script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-2DX9VPLPS9"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-2DX9VPLPS9')</script>
-<script id=baidu_analytics>var _hmt=_hmt||[];(function(){var a,b;if(window.location.hostname==='localhost')return;a=document.createElement("script"),a.async=!0,a.src="https://hm.baidu.com/hm.js?ec80cf7a02434b875035c1250cf198e5",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script>
-</body>
-</html>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-2DX9VPLPS9")</script><script id=baidu_analytics>var _hmt=_hmt||[];(function(){if(window.location.hostname==="localhost")return;var t,e=document.createElement("script");e.async=!0,e.src="https://hm.baidu.com/hm.js?ec80cf7a02434b875035c1250cf198e5",t=document.getElementsByTagName("script")[0],t.parentNode.insertBefore(e,t)})()</script></body></html>
