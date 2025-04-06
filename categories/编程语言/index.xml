@@ -1,1 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>编程语言 on superbear's blog</title><link>https://superbear.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link><description>Recent content in 编程语言 on superbear's blog</description><generator>Hugo -- gohugo.io</generator><language>zh-cn</language><lastBuildDate>Sun, 16 Oct 2022 19:20:00 +0800</lastBuildDate><atom:link href="https://superbear.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml"/><item><title>Java调用Go</title><link>https://superbear.github.io/post/2022/10/calling-go-functions-from-java/</link><pubDate>Sun, 16 Oct 2022 19:20:00 +0800</pubDate><guid>https://superbear.github.io/post/2022/10/calling-go-functions-from-java/</guid><description>调用过程 Cgo 将Go代码编译成动态链接库，然后Java通过JNA 来调用动态链接库 1 Go ---&amp;gt; Cgo --&amp;gt; Shared libraries &amp;lt;--- JNA &amp;lt;--- Java 名词解释 Cgo：Go和C的桥梁，两者可以互</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>编程语言 on superbear's blog</title><link>https://superbear.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/</link><description>Recent content in 编程语言 on superbear's blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 16 Oct 2022 19:30:00 +0800</lastBuildDate><atom:link href="https://superbear.github.io/categories/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/index.xml" rel="self" type="application/rss+xml"/><item><title>Java调用Go</title><link>https://superbear.github.io/post/2022/10/calling-go-functions-from-java/</link><pubDate>Sun, 16 Oct 2022 19:20:00 +0800</pubDate><guid>https://superbear.github.io/post/2022/10/calling-go-functions-from-java/</guid><description>&lt;h2 id="调用过程">调用过程&lt;/h2>
+&lt;p>&lt;a href="https://pkg.go.dev/cmd/cgo" target="_blank" rel="noopener">Cgo&lt;/a>
+将Go代码编译成动态链接库，然后Java通过&lt;a href="https://en.wikipedia.org/wiki/Java_Native_Access" target="_blank" rel="noopener">JNA&lt;/a>
+来调用动态链接库&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Go ---&amp;gt; Cgo --&amp;gt; Shared libraries &amp;lt;--- JNA &amp;lt;--- Java
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;strong>名词解释&lt;/strong>&lt;/p>
+&lt;p>Cgo：Go和C的桥梁，两者可以互相调用&lt;/p>
+&lt;p>JNA：一个Java框架，让Java程序更方便地使用动态链接库&lt;/p></description></item></channel></rss>
