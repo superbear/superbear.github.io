@@ -193,36 +193,36 @@
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># 修改时区</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Set Timezone</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>sudo timedatectl set-timezone &#39;Asia/Shanghai&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>sudo timedatectl set-timezone &#39;Asia/Shanghai&#39;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v2</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>submodules</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>  </span><span class=c># Fetch Hugo themes (true OR recursive)</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>    </span><span class=c># Fetch all history for .GitInfo and .Lastmod</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>submodules</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>  </span><span class=c># Fetch Hugo themes (true OR recursive)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>    </span><span class=c># Fetch all history for .GitInfo and .Lastmod</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># 建议和本地用的版本保持一致，从而获得一致的体验</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0.89.4&#39;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># extended: true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 建议和本地用的版本保持一致，从而获得一致的体验</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0.89.4&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># extended: true</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>|</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=l>hugo --source hugo --minify --buildFuture --buildExpired</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          </span><span class=w>          </span><span class=l>hugo --source hugo --minify --buildFuture --buildExpired</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-gh-pages@v3</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.ref == &#39;refs/heads/main&#39; }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># publish_branch: gh-pages</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># publish_dir: hugo/public</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>deploy_key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.DEPLOY_KEY }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>external_repository</span><span class=p>:</span><span class=w> </span><span class=l>superbear/superbear.github.io</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=c># 默认是master目录，github上可修改</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>publish_branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=nt>publish_dir</span><span class=p>:</span><span class=w> </span><span class=l>hugo/public</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-gh-pages@v3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.ref == &#39;refs/heads/main&#39; }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># publish_branch: gh-pages</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># publish_dir: hugo/public</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>deploy_key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.DEPLOY_KEY }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>external_repository</span><span class=p>:</span><span class=w> </span><span class=l>superbear/superbear.github.io</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 默认是master目录，github上可修改</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>publish_branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>publish_dir</span><span class=p>:</span><span class=w> </span><span class=l>hugo/public</span><span class=w>
 </span></span></span></code></pre></td></tr></table></div></div><h3 id=配置deploy-key>配置DEPLOY_KEY</h3><p>生成<a href=https://docs.github.com/en/developers/overview/managing-deploy-keys#deploy-keys target=_blank rel=noopener>github deploy-keys</a><br>1、将公钥添加至{username}.github.io仓的Deploy keys（Settings -> Deploy keys）中；<br>2、将私钥添加至blog仓库的secrets（Settings -> Secrets）中；<br>3、将本地blog目录的改动push到远程blog仓库master分支；<br>4、正常情况下，一段时间之后，可以在{username}.github.io的master分支下看到hugo生成的静态文件；<br>5、没有的话，可以根据blog仓库的Github Actions日志排查下。</p><h2 id=遇到的问题>遇到的问题</h2><p>1、部署完成却没有生成文件，就只有一个.nojekyll文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=c>&lt;!-- actions log --&gt;</span>
@@ -250,7 +250,7 @@
 <a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
 <span class=copyright-year>&copy;
 2016 -
-2024<span class=heart><i class="iconfont icon-heart"></i></span><span>superbear</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+2025<span class=heart><i class="iconfont icon-heart"></i></span><span>superbear</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>

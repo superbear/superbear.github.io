@@ -42,16 +42,16 @@ Python、PHP这类解释型语言的话，需要配置好环境。</p><p>拿Go�
 </span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nx>reader</span> <span class=o>:=</span> <span class=nx>bufio</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdin</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	<span class=nx>input</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>reader</span><span class=p>.</span><span class=nf>ReadString</span><span class=p>(</span><span class=sc>&#39;\n&#39;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>	    <span class=k>break</span>
-</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=nx>input</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>reader</span><span class=p>.</span><span class=nf>ReadString</span><span class=p>(</span><span class=sc>&#39;\n&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>break</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=c1>// 输入/输出多个字段通过制表符分隔
-</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=nx>list</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Split</span><span class=p>(</span><span class=nx>input</span><span class=p>,</span> <span class=s>&#34;\t&#34;</span><span class=p>)</span>
-</span></span><span class=line><span class=cl>	<span class=c1>// 处理逻辑
-</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=c1>// 可以返回多行或一行，行尾记得输出换行符
-</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>strings</span><span class=p>.</span><span class=nf>Join</span><span class=p>(</span><span class=nx>list</span><span class=p>,</span> <span class=s>&#34;\t&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 输入/输出多个字段通过制表符分隔
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>list</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Split</span><span class=p>(</span><span class=nx>input</span><span class=p>,</span> <span class=s>&#34;\t&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 处理逻辑
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=c1>// 可以返回多行或一行，行尾记得输出换行符
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>strings</span><span class=p>.</span><span class=nf>Join</span><span class=p>(</span><span class=nx>list</span><span class=p>,</span> <span class=s>&#34;\t&#34;</span><span class=p>))</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -137,36 +137,36 @@ Python、PHP这类解释型语言的话，需要配置好环境。</p><p>拿Go�
 </span></span><span class=line><span class=cl>    <span class=c1>// 初始化的时候校验参数数量及类型 返回值类型
 </span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=nd>@Override</span>
 </span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=n>ObjectInspector</span> <span class=nf>initialize</span><span class=o>(</span><span class=n>ObjectInspector</span><span class=o>[]</span> <span class=n>arg0</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>UDFArgumentException</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=o>(</span><span class=n>arg0</span><span class=o>.</span><span class=na>length</span> <span class=o>!=</span> <span class=n>1</span><span class=o>)</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>	    <span class=k>throw</span> <span class=k>new</span> <span class=n>UDFArgumentLengthException</span><span class=o>(</span><span class=s>&#34;UPPER requires 1 argument, got &#34;</span> <span class=o>+</span> <span class=n>arg0</span><span class=o>.</span><span class=na>length</span><span class=o>);</span>
-</span></span><span class=line><span class=cl>	<span class=o>}</span>
-</span></span><span class=line><span class=cl>	<span class=c1>// create an ObjectInspector for the input
-</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=n>ObjectInspector</span> <span class=n>input0</span> <span class=o>=</span> <span class=n>arg0</span><span class=o>[</span><span class=n>0</span><span class=o>];</span>
-</span></span><span class=line><span class=cl>	<span class=c1>// check to make sure the input is a string
-</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=k>if</span> <span class=o>(!(</span><span class=n>input0</span> <span class=k>instanceof</span> <span class=n>StringObjectInspector</span><span class=o>))</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>	    <span class=k>throw</span> <span class=k>new</span> <span class=n>UDFArgumentTypeException</span><span class=o>(</span><span class=n>0</span><span class=o>,</span> <span class=s>&#34;UPPER only takes string, got &#34;</span> <span class=o>+</span> <span class=n>input0</span><span class=o>.</span><span class=na>getTypeName</span><span class=o>());</span>
-</span></span><span class=line><span class=cl>	<span class=o>}</span>
-</span></span><span class=line><span class=cl>	<span class=k>this</span><span class=o>.</span><span class=na>inputOI0</span> <span class=o>=</span> <span class=o>(</span><span class=n>StringObjectInspector</span><span class=o>)</span> <span class=n>input0</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>(</span><span class=n>arg0</span><span class=o>.</span><span class=na>length</span> <span class=o>!=</span> <span class=n>1</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>throw</span> <span class=k>new</span> <span class=n>UDFArgumentLengthException</span><span class=o>(</span><span class=s>&#34;UPPER requires 1 argument, got &#34;</span> <span class=o>+</span> <span class=n>arg0</span><span class=o>.</span><span class=na>length</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// create an ObjectInspector for the input
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=n>ObjectInspector</span> <span class=n>input0</span> <span class=o>=</span> <span class=n>arg0</span><span class=o>[</span><span class=n>0</span><span class=o>];</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// check to make sure the input is a string
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>if</span> <span class=o>(!(</span><span class=n>input0</span> <span class=k>instanceof</span> <span class=n>StringObjectInspector</span><span class=o>))</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>throw</span> <span class=k>new</span> <span class=n>UDFArgumentTypeException</span><span class=o>(</span><span class=n>0</span><span class=o>,</span> <span class=s>&#34;UPPER only takes string, got &#34;</span> <span class=o>+</span> <span class=n>input0</span><span class=o>.</span><span class=na>getTypeName</span><span class=o>());</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
+</span></span><span class=line><span class=cl>        <span class=k>this</span><span class=o>.</span><span class=na>inputOI0</span> <span class=o>=</span> <span class=o>(</span><span class=n>StringObjectInspector</span><span class=o>)</span> <span class=n>input0</span><span class=o>;</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=c1>// 返回值类型
-</span></span></span><span class=line><span class=cl><span class=c1></span>	<span class=k>return</span> <span class=n>PrimitiveObjectInspectorFactory</span><span class=o>.</span><span class=na>javaStringObjectInspector</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 返回值类型
+</span></span></span><span class=line><span class=cl><span class=c1></span>        <span class=k>return</span> <span class=n>PrimitiveObjectInspectorFactory</span><span class=o>.</span><span class=na>javaStringObjectInspector</span><span class=o>;</span>
 </span></span><span class=line><span class=cl>    <span class=o>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=nd>@Override</span>
 </span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=n>Object</span> <span class=nf>evaluate</span><span class=o>(</span><span class=n>DeferredObject</span><span class=o>[]</span> <span class=n>arg0</span><span class=o>)</span> <span class=kd>throws</span> <span class=n>HiveException</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>	<span class=k>if</span> <span class=o>(</span><span class=n>arg0</span><span class=o>[</span><span class=n>0</span><span class=o>].</span><span class=na>get</span><span class=o>()</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>	    <span class=k>return</span> <span class=kc>null</span><span class=o>;</span>
-</span></span><span class=line><span class=cl>	<span class=o>}</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=o>(</span><span class=n>arg0</span><span class=o>[</span><span class=n>0</span><span class=o>].</span><span class=na>get</span><span class=o>()</span> <span class=o>==</span> <span class=kc>null</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>            <span class=k>return</span> <span class=kc>null</span><span class=o>;</span>
+</span></span><span class=line><span class=cl>        <span class=o>}</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=n>String</span> <span class=n>str</span> <span class=o>=</span> <span class=k>this</span><span class=o>.</span><span class=na>inputOI0</span><span class=o>.</span><span class=na>getPrimitiveJavaObject</span><span class=o>(</span><span class=n>arg0</span><span class=o>[</span><span class=n>0</span><span class=o>].</span><span class=na>get</span><span class=o>()).</span><span class=na>toString</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>        <span class=n>String</span> <span class=n>str</span> <span class=o>=</span> <span class=k>this</span><span class=o>.</span><span class=na>inputOI0</span><span class=o>.</span><span class=na>getPrimitiveJavaObject</span><span class=o>(</span><span class=n>arg0</span><span class=o>[</span><span class=n>0</span><span class=o>].</span><span class=na>get</span><span class=o>()).</span><span class=na>toString</span><span class=o>();</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>str</span><span class=o>.</span><span class=na>toUpperCase</span><span class=o>();</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>str</span><span class=o>.</span><span class=na>toUpperCase</span><span class=o>();</span>
 </span></span><span class=line><span class=cl>    <span class=o>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=nd>@Override</span>
 </span></span><span class=line><span class=cl>    <span class=kd>public</span> <span class=n>String</span> <span class=nf>getDisplayString</span><span class=o>(</span><span class=n>String</span><span class=o>[]</span> <span class=n>children</span><span class=o>)</span> <span class=o>{</span>
-</span></span><span class=line><span class=cl>	<span class=k>assert</span> <span class=o>(</span><span class=n>children</span><span class=o>.</span><span class=na>length</span> <span class=o>==</span> <span class=n>1</span><span class=o>);</span>
-</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=n>getStandardDisplayString</span><span class=o>(</span><span class=s>&#34;upper&#34;</span><span class=o>,</span> <span class=n>children</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>assert</span> <span class=o>(</span><span class=n>children</span><span class=o>.</span><span class=na>length</span> <span class=o>==</span> <span class=n>1</span><span class=o>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=n>getStandardDisplayString</span><span class=o>(</span><span class=s>&#34;upper&#34;</span><span class=o>,</span> <span class=n>children</span><span class=o>);</span>
 </span></span><span class=line><span class=cl>    <span class=o>}</span>
 </span></span><span class=line><span class=cl><span class=o>}</span>
 </span></span></code></pre></td></tr></table></div></div><p>打包成jar之后上传至hdfs。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
@@ -205,7 +205,7 @@ Python、PHP这类解释型语言的话，需要配置好环境。</p><p>拿Go�
 <a class=theme-link href=https://github.com/olOwOlo/hugo-theme-even>Even</a></span>
 <span class=copyright-year>&copy;
 2016 -
-2024<span class=heart><i class="iconfont icon-heart"></i></span><span>superbear</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
+2025<span class=heart><i class="iconfont icon-heart"></i></span><span>superbear</span></span></div></footer><div class=back-to-top id=back-to-top><i class="iconfont icon-up"></i></div></div><script src=https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin=anonymous></script>
 <script src=https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin=anonymous></script>
 <script type=text/javascript src=/js/main.min.4ae89da218555efa0e7093a20b92017d2e1202b66fff9fc2edf4cb8d44b44c6e.js></script>
