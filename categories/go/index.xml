@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Go on superbear's blog</title><link>https://superbear.github.io/categories/go/</link><description>Recent content in Go on superbear's blog</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 05 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://superbear.github.io/categories/go/index.xml" rel="self" type="application/rss+xml"/><item><title>Go + WebAssembly（WASM）小游戏</title><link>https://superbear.github.io/post/2026/04/wasm/</link><pubDate>Sun, 05 Apr 2026 00:00:00 +0800</pubDate><guid>https://superbear.github.io/post/2026/04/wasm/</guid><description>&lt;h2 id="wasm-小游戏示例">WASM 小游戏示例&lt;/h2>
+&lt;html>
+&lt;head>
+ &lt;meta charset="utf-8"/>
+ &lt;title>Go Wasm 小游戏&lt;/title>
+&lt;/head>
+&lt;body>
+ &lt;canvas id="game" width="400" height="300" style="border:1px solid #ccc">&lt;/canvas>
+ &lt;script src="https://superbear.github.io/assets/wasm_exec.js">&lt;/script>
+ &lt;script>
+ const go = new Go();
+ WebAssembly.instantiateStreaming(fetch("/assets/game.260405.wasm"), go.importObject).then((result) => {
+ go.run(result.instance);
+ // 首次渲染
+ if (typeof wasmRender === "function") wasmRender();
+ });
+ &lt;/script>
+&lt;/body>
+&lt;/html></description></item></channel></rss>
